@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Səbuhi Khazimzada — Creative Engineer · Founder · Creator</title>
+  <meta name="description" content="Portfolio of Səbuhi Khazimzada — Developer, Founder and Technology Enthusiast. Building autonomous systems, P2P mesh networks, and digital platforms.">
+  <meta property="og:title" content="Səbuhi Khazimzada — Creative Engineer · Founder · Creator">
+  <meta property="og:description" content="Building ideas into products. Digital ecosystems, offline mesh networks and aviation platforms.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://seabuhi.com">
+  <meta name="theme-color" content="#0d0e15">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles/main.css">
+</head>
+<body class="loading">
+
+  <!-- PRELOADER -->
+  <div id="loader" aria-hidden="true">
+    <div class="loader-content">
+      <div class="loader-logo">SEABUHI</div>
+      <div class="loader-bar-wrap">
+        <div id="loader-bar" class="loader-bar"></div>
+      </div>
+      <div class="loader-meta">
+        <span class="loader-status">INITIALIZING SYSTEM</span>
+        <span id="loader-val" class="loader-val">0%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PERSISTENT WEBGL CANVAS -->
+  <canvas id="webgl"></canvas>
+
+  <!-- NOISE GRAIN OVERLAY -->
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- CUSTOM MAGNETIC CURSOR -->
+  <div id="cursor" aria-hidden="true">
+    <div class="cursor-dot"></div>
+    <div class="cursor-circle"></div>
+    <span class="cursor-text">DRAG</span>
+  </div>
+
+  <!-- HIGH-PRECISION TOP SCROLL PROGRESS LINE -->
+  <div id="scroll-progress-line" class="scroll-progress-line" aria-hidden="true"></div>
+
+  <!-- NAVIGATION BAR -->
+  <header id="nav">
+    <a href="#" class="nav-brand magnetic" data-strength="20">
+      <span class="brand-name">SƏBUHİ</span>
+      <span class="brand-dot"></span>
+      <span class="brand-role">FOUNDER</span>
+    </a>
+
+    <nav class="nav-links">
+      <a href="#work" class="nav-item magnetic" data-strength="15"><span>01</span>WORK</a>
+      <a href="#about" class="nav-item magnetic" data-strength="15"><span>02</span>ABOUT</a>
+      <a href="#nfc" class="nav-item magnetic" data-strength="15"><span>03</span>NFC CARD</a>
+      <a href="#contact" class="nav-item magnetic" data-strength="15"><span>04</span>CONTACT</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button id="sound-btn" class="sound-toggle magnetic" data-strength="15" aria-label="Toggle Sound">
+        <span class="sound-bars">
+          <span></span><span></span><span></span>
+        </span>
+        <span id="sound-label">SOUND [OFF]</span>
+      </button>
+      <a href="mailto:seabuhikhazimzade@gmail.com" class="nav-cta magnetic" data-strength="20">LET'S TALK</a>
+    </div>
+  </header>
+
+  <!-- SMOOTH SCROLL CONTAINER (Lenis Driven) -->
+  <main id="app">
+
+    <!-- ═════════════════════════════════════════════
+         HERO SECTION: 3D INTERACTIVE NFC CARD & KINETIC TYPE
+         ═════════════════════════════════════════════ -->
+    <section id="hero" class="section hero-section">
+      <div class="container hero-container">
+        <div class="hero-header">
+          <div class="status-pill">
+            <span class="pulse-dot"></span>
+            <span>AVAILABLE FOR VENTURES & ENGINEERING // BAKU · GLOBAL</span>
+          </div>
+          <h1 class="hero-title">
+            <span class="line"><span class="word">ENGINEERING</span> <span class="word accent-text">IDEAS</span></span>
+            <span class="line"><span class="word">INTO</span> <span class="word">HIGH-IMPACT</span></span>
+            <span class="line"><span class="word">DIGITAL</span> <span class="word gradient-text">REALITY.</span></span>
+          </h1>
+        </div>
+
+        <div class="hero-bottom">
+          <div class="hero-bio">
+            <p>
+              I am <strong>Səbuhi Khazimzada</strong> — a founder, software architect, and creative engineer crafting autonomous logistics, offline mesh protocols, and high-performance platforms.
+            </p>
+            <div class="hero-nfc-badge">
+              <span class="nfc-chip-icon"></span>
+              <span>TAP PHYSICAL NFC CARD OR DRAG 3D CARD TO INSPECT</span>
+            </div>
+          </div>
+
+          <div class="hero-telemetry">
+            <div class="telem-row"><span class="telem-label">LOCATION:</span><span class="telem-val">40.4093° N, 49.8671° E</span></div>
+            <div class="telem-row"><span class="telem-label">EXPERTISE:</span><span class="telem-val">DISTRIBUTED SYSTEMS · P2P · FULL-STACK</span></div>
+            <div class="telem-row"><span class="telem-label">VENTURES:</span><span class="telem-val">SAVELYA · OFFLINE MESSENGER · FSF · AZINET</span></div>
+          </div>
+        </div>
+
+        <div class="scroll-indicator">
+          <div class="scroll-mouse">
+            <div class="scroll-wheel"></div>
+          </div>
+          <span>SCROLL TO EXPLORE WORK</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FLOATING CHAPTER SCROLL NAVIGATOR -->
+    <aside id="chapter-nav" aria-label="Section Navigation">
+      <div class="chapter-list">
+        <a href="#hero" class="chapter-dot active" data-label="00 · INTRO"><span class="c-dot"></span><span class="c-name">INTRO</span></a>
+        <a href="#work" class="chapter-dot" data-label="01 · SAVELYA"><span class="c-dot"></span><span class="c-name">SAVELYA</span></a>
+        <a href="#messenger" class="chapter-dot" data-label="02 · MESSENGER"><span class="c-dot"></span><span class="c-name">MESSENGER</span></a>
+        <a href="#fsf" class="chapter-dot" data-label="03 · FSF GROUP"><span class="c-dot"></span><span class="c-name">FSF GROUP</span></a>
+        <a href="#azinet" class="chapter-dot" data-label="04 · AZINET"><span class="c-dot"></span><span class="c-name">AZINET</span></a>
+        <a href="#nfc" class="chapter-dot" data-label="05 · NFC CARD"><span class="c-dot"></span><span class="c-name">NFC CARD</span></a>
+        <a href="#about" class="chapter-dot" data-label="06 · ABOUT"><span class="c-dot"></span><span class="c-name">ABOUT</span></a>
+        <a href="#contact" class="chapter-dot" data-label="07 · CONTACT"><span class="c-dot"></span><span class="c-name">CONTACT</span></a>
+      </div>
+    </aside>
+
+    <!-- ═════════════════════════════════════════════
+         PROJECT 01: SAVELYA — AUTONOMOUS LOGISTICS & ESCROW
+         ═════════════════════════════════════════════ -->
+    <section id="work" class="section project-section" data-project="savelya">
+      <!-- Section-Specific Background Graphic: Live Escrow Vault & Courier Stream -->
+      <div class="section-bg-fx bg-fx-savelya" aria-hidden="true">
+        <div class="bg-glow bg-glow-amber"></div>
+        
+        <!-- Animated Holographic Escrow Core & Routing Paths -->
+        <svg class="bg-svg-graphic" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Central Cryptographic Rotating Rings -->
+          <g class="spin-ring-slow" transform-origin="720 450">
+            <circle cx="720" cy="450" r="280" stroke="rgba(255, 210, 105, 0.22)" stroke-width="2" stroke-dasharray="16 10"/>
+            <circle cx="720" cy="450" r="340" stroke="rgba(245, 158, 11, 0.15)" stroke-width="1.5" stroke-dasharray="6 20"/>
+          </g>
+          <g class="spin-ring-rev" transform-origin="720 450">
+            <circle cx="720" cy="450" r="210" stroke="rgba(255, 210, 105, 0.25)" stroke-width="2" stroke-dasharray="24 16"/>
+            <polygon points="720,220 740,240 700,240" fill="#ffd269"/>
+            <polygon points="720,680 740,660 700,660" fill="#ffd269"/>
+          </g>
+
+          <!-- Glowing Active Courier Parcel Trajectory Lines -->
+          <path d="M-50 680 C 350 420, 750 620, 1500 240" stroke="rgba(255, 210, 105, 0.35)" stroke-width="3" class="dash-flow-fast"/>
+          <path d="M100 200 C 500 480, 950 250, 1400 800" stroke="rgba(245, 158, 11, 0.25)" stroke-width="2" class="dash-flow-rev"/>
+
+          <!-- Courier Delivery Waypoint Nodes -->
+          <circle cx="340" cy="495" r="8" fill="#ffd269" class="pulse-node"/>
+          <circle cx="760" cy="540" r="10" fill="#f59e0b" class="pulse-node-2"/>
+          <circle cx="1140" cy="330" r="8" fill="#ffd269" class="pulse-node"/>
+        </svg>
+
+        <!-- Floating Live Telemetry Chips -->
+        <div class="bg-float-cards">
+          <div class="bg-card-chip chip-amber c-pos-1">
+            <span class="chip-dot dot-gold"></span>
+            <span class="chip-text">🔒 ESCROW VAULT: ₼350 LOCKED · FRAUD GUARANTEE 100%</span>
+          </div>
+          <div class="bg-card-chip chip-amber c-pos-2">
+            <span class="chip-dot dot-green"></span>
+            <span class="chip-text">🚚 EXPRESS COURIER #AZ-8842 · DISPATCHED (14 MINS)</span>
+          </div>
+          <div class="bg-card-chip chip-amber c-pos-3">
+            <span class="chip-dot dot-gold"></span>
+            <span class="chip-text">✓ BUYER VERIFICATION PROTOCOL CONFIRMED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="container project-grid">
+        <!-- Content Column -->
+        <div class="project-content">
+          <div class="project-tag-wrap">
+            <span class="project-num">01 / 04</span>
+            <span class="project-category">ECOMMERCE & SECURE ESCROW LOGISTICS</span>
+          </div>
+          <h2 class="project-title">SAVELYA</h2>
+          <p class="project-lead">
+            A next-generation second-hand marketplace engineered around protected escrow transactions. Funds are held in cryptographic lock until automated courier delivery and buyer verification are confirmed.
+          </p>
+          
+          <!-- Live Interactive Escrow Widget -->
+          <div class="interactive-widget glass-card">
+            <div class="widget-header">
+              <span class="widget-title">ESCROW DELIVERY PROTOCOL // LIVE SIMULATION</span>
+              <span class="live-indicator"><span class="live-dot"></span>ACTIVE</span>
+            </div>
+            <div class="escrow-pipeline">
+              <div class="step completed">
+                <div class="step-icon">✓</div>
+                <div class="step-info"><span class="step-name">PAYMENT</span><span class="step-detail">FUNDS LOCKED</span></div>
+              </div>
+              <div class="pipeline-connector active"></div>
+              <div class="step active">
+                <div class="step-icon">🚚</div>
+                <div class="step-info"><span class="step-name">IN TRANSIT</span><span class="step-detail">TRACK #AZ-8842</span></div>
+              </div>
+              <div class="pipeline-connector"></div>
+              <div class="step pending">
+                <div class="step-icon">🔒</div>
+                <div class="step-info"><span class="step-name">DELIVERED</span><span class="step-detail">BUYER CONFIRM</span></div>
+              </div>
+              <div class="pipeline-connector"></div>
+              <div class="step pending">
+                <div class="step-info">💸</div>
+                <div class="step-info"><span class="step-name">PAYOUT</span><span class="step-detail">RELEASE TO SELLER</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-tags">
+            <span>Escrow Architecture</span>
+            <span>Real-Time Logistics</span>
+            <span>Microservices</span>
+            <span>Buyer Protection</span>
+          </div>
+
+          <div class="project-links">
+            <a href="https://savelya.com" target="_blank" rel="noopener" class="btn-primary magnetic">
+              <span>VISIT LIVE PLATFORM (SAVELYA.COM)</span>
+              <span class="btn-arrow">↗</span>
+            </a>
+            <a href="https://github.com/seabuhi" target="_blank" rel="noopener" class="btn-secondary magnetic">
+              <span>SOURCE SPECS</span>
+              <span class="btn-arrow">↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Presentation Showcase Column -->
+        <div class="project-showcase">
+          <div class="showcase-window glass-card">
+            <div class="window-bar">
+              <div class="window-dots"><span></span><span></span><span></span></div>
+              <div class="window-url">
+                <span class="url-lock">🔒</span>
+                <span class="url-text">https://savelya.com</span>
+                <span class="url-badge">LIVE SITE</span>
+              </div>
+              <div class="window-actions">
+                <span class="window-status-pill">100% OPERATIONAL</span>
+              </div>
+            </div>
+            <div class="window-frame">
+              <a href="https://savelya.com" target="_blank" rel="noopener" class="showcase-img-link" title="Open Savelya.com in new tab">
+                <img src="/images/savelya.png" alt="Savelya Live Marketplace Platform" class="showcase-img" loading="lazy">
+                <div class="showcase-overlay">
+                  <span class="overlay-badge">
+                    <span>EXPLORE SAVELYA.COM</span>
+                    <span class="arrow">↗</span>
+                  </span>
+                </div>
+              </a>
+            </div>
+            <div class="showcase-footer">
+              <div class="showcase-metric">
+                <span class="metric-val">100%</span>
+                <span class="metric-lbl">Escrow Guarantee</span>
+              </div>
+              <div class="showcase-metric">
+                <span class="metric-val">&lt; 2hr</span>
+                <span class="metric-lbl">Express Delivery</span>
+              </div>
+              <div class="showcase-metric">
+                <span class="metric-val">256-Bit</span>
+                <span class="metric-lbl">End-to-End Vault</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════════════════════════
+         PROJECT 02: OFFLINE MESSENGER — P2P BLUETOOTH MESH
+         ═════════════════════════════════════════════ -->
+    <section id="messenger" class="section project-section" data-project="messenger">
+      <!-- Section-Specific Background Graphic: Active 2.4GHz BLE Radar Sweep & Waveform Spectrum -->
+      <div class="section-bg-fx bg-fx-messenger" aria-hidden="true">
+        <div class="bg-glow bg-glow-cyan"></div>
+        
+        <!-- Live Rotating 360-degree Radar Scanner Beam -->
+        <div class="radar-scanner-container">
+          <div class="radar-sweep-beam"></div>
+          <div class="radar-concentric r-1"></div>
+          <div class="radar-concentric r-2"></div>
+          <div class="radar-concentric r-3"></div>
+        </div>
+
+        <!-- Radio Audio Frequency Equalizer Dancing Bars -->
+        <div class="bg-frequency-spectrum">
+          <span class="freq-bar" style="--i:1"></span>
+          <span class="freq-bar" style="--i:4"></span>
+          <span class="freq-bar" style="--i:2"></span>
+          <span class="freq-bar" style="--i:6"></span>
+          <span class="freq-bar" style="--i:3"></span>
+          <span class="freq-bar" style="--i:7"></span>
+          <span class="freq-bar" style="--i:5"></span>
+          <span class="freq-bar" style="--i:2"></span>
+          <span class="freq-bar" style="--i:6"></span>
+          <span class="freq-bar" style="--i:4"></span>
+          <span class="freq-bar" style="--i:8"></span>
+          <span class="freq-bar" style="--i:3"></span>
+        </div>
+
+        <svg class="bg-svg-graphic" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Mesh Peer Hop Topology Lines -->
+          <line x1="350" y1="450" x2="680" y2="280" stroke="rgba(0, 240, 255, 0.3)" stroke-width="2" stroke-dasharray="6 4" class="dash-flow-fast"/>
+          <line x1="350" y1="450" x2="720" y2="620" stroke="rgba(0, 240, 255, 0.3)" stroke-width="2" stroke-dasharray="6 4" class="dash-flow-fast"/>
+          <line x1="680" y1="280" x2="1050" y2="380" stroke="rgba(0, 240, 255, 0.25)" stroke-width="1.5"/>
+          <line x1="720" y1="620" x2="1180" y2="580" stroke="rgba(0, 240, 255, 0.25)" stroke-width="1.5"/>
+          <circle cx="350" cy="450" r="8" fill="#00f0ff" class="pulse-node-cyan"/>
+          <circle cx="680" cy="280" r="6" fill="#00f0ff" class="pulse-node-cyan"/>
+          <circle cx="720" cy="620" r="6" fill="#00f0ff" class="pulse-node-cyan"/>
+          <circle cx="1050" cy="380" r="7" fill="#00f0ff" class="pulse-node-cyan"/>
+          <circle cx="1180" cy="580" r="6" fill="#00f0ff" class="pulse-node-cyan"/>
+        </svg>
+
+        <!-- Floating Live Telemetry Chips -->
+        <div class="bg-float-cards">
+          <div class="bg-card-chip chip-cyan c-pos-1">
+            <span class="chip-dot dot-cyan"></span>
+            <span class="chip-text">📡 2.4GHz BLE 5.3 RADIO PHY · ACTIVE TRANSMITTER</span>
+          </div>
+          <div class="bg-card-chip chip-cyan c-pos-2">
+            <span class="chip-dot dot-green"></span>
+            <span class="chip-text">⚡ 6 MESH RELAY PEERS LINKED · RSSI: -48dBm</span>
+          </div>
+          <div class="bg-card-chip chip-cyan c-pos-3">
+            <span class="chip-dot dot-cyan"></span>
+            <span class="chip-text">🔒 ZERO INTERNET / ZERO CELLULAR TOWERS REQUIRED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="container project-grid project-reverse">
+        <!-- Presentation Showcase Column -->
+        <div class="project-showcase">
+          <div class="showcase-window showcase-dark glass-card">
+            <div class="window-bar">
+              <div class="window-dots"><span class="cyan"></span><span class="cyan"></span><span class="cyan"></span></div>
+              <div class="window-url">
+                <span class="url-lock">⚡</span>
+                <span class="url-text">mesh://node-cluster-ble53</span>
+                <span class="url-badge cyan-badge">OFFLINE MESH</span>
+              </div>
+              <div class="window-actions">
+                <span class="window-status-pill cyan-pill">6 PEERS SYNCED</span>
+              </div>
+            </div>
+            <div class="window-frame">
+              <img src="/images/messenger.jpg" alt="Offline Messenger P2P BLE Mesh Application" class="showcase-img" loading="lazy">
+              <div class="floating-mesh-card">
+                <div class="f-mesh-header">
+                  <span class="pulse-dot-cyan"></span>
+                  <span>BLE 5.3 RADIO LINK</span>
+                </div>
+                <div class="f-mesh-stat">
+                  <span>RSSI: -45dBm</span>
+                  <span>HOP COUNT: 2/4</span>
+                </div>
+              </div>
+            </div>
+            <div class="showcase-footer">
+              <div class="showcase-metric">
+                <span class="metric-val cyan-text">0.0 KB</span>
+                <span class="metric-lbl">Cellular / Internet</span>
+              </div>
+              <div class="showcase-metric">
+                <span class="metric-val cyan-text">AES-256</span>
+                <span class="metric-lbl">Ephemeral GCM Keys</span>
+              </div>
+              <div class="showcase-metric">
+                <span class="metric-val cyan-text">Up to 1.2km</span>
+                <span class="metric-lbl">Relay Range</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content Column -->
+        <div class="project-content">
+          <div class="project-tag-wrap">
+            <span class="project-num">02 / 04</span>
+            <span class="project-category">DECENTRALIZED COMMUNICATION PROTOCOL</span>
+          </div>
+          <h2 class="project-title">OFFLINE<br>MESSENGER</h2>
+          <p class="project-lead">
+            An off-grid P2P communication network enabling direct device-to-device encrypted messaging over BLE 5.3 radio mesh topology. Zero internet, zero cellular towers, and zero centralized servers required.
+          </p>
+
+          <!-- Live Terminal Simulator -->
+          <div class="interactive-terminal glass-card">
+            <div class="terminal-bar">
+              <span class="term-dots"><i></i><i></i><i></i></span>
+              <span class="term-title">MESH NODE PROTOCOL STREAM // 2.4GHz PHY</span>
+            </div>
+            <div class="terminal-body" id="term-logs">
+              <div class="term-line"><span class="term-prefix">[SYSTEM]</span> Initializing radio transceiver BLE 5.3 PHY...</div>
+              <div class="term-line"><span class="term-green">[DISCOVER]</span> Found 6 mesh relay nodes in proximity (RSSI: -48dBm)</div>
+              <div class="term-line"><span class="term-cyan">[CRYPTO]</span> Handshake established. AES-256 GCM ephemeral key synced</div>
+              <div class="term-line term-glow"><span class="term-yellow">[PACKET]</span> 0x8F 11 4C 99 -&gt; Hop 2/4 -&gt; BROADCAST_ACK_OK</div>
+            </div>
+          </div>
+
+          <div class="project-tags">
+            <span>BLE 5.3 Mesh</span>
+            <span>Ad-Hoc Networking</span>
+            <span>AES-256 GCM</span>
+            <span>Zero Infrastructure</span>
+          </div>
+
+          <div class="project-links">
+            <a href="https://github.com/seabuhi" target="_blank" rel="noopener" class="btn-primary magnetic">
+              <span>VIEW PROTOCOL CODE</span>
+              <span class="btn-arrow">↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════════════════════════
+         PROJECT 03: FSF GROUP — DIGITAL TRAVEL & AVIATION
+         ═════════════════════════════════════════════ -->
+    <section id="fsf" class="section project-section" data-project="fsf">
+      <!-- Section-Specific Background Graphic: ATC Radar & Live Flying Jet Corridors -->
+      <div class="section-bg-fx bg-fx-fsf" aria-hidden="true">
+        <div class="bg-glow bg-glow-sky"></div>
+        
+        <!-- Animated Flying Airplanes along trajectories -->
+        <div class="flying-jet-container">
+          <div class="flying-jet jet-1">
+            <span class="jet-icon">✈</span>
+            <span class="jet-tag">FSF-7500 · MACH 0.85</span>
+          </div>
+          <div class="flying-jet jet-2">
+            <span class="jet-icon">✈</span>
+            <span class="jet-tag">VIP G650 · FL410</span>
+          </div>
+        </div>
+
+        <svg class="bg-svg-graphic" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Flight Airway Waypoint Corridors (Baku GYD -> IST -> LHR -> DXB) -->
+          <path d="M120 620 Q 600 200, 1340 360" stroke="rgba(56, 189, 248, 0.35)" stroke-width="2.5" class="flight-path-flow"/>
+          <path d="M140 640 Q 750 820, 1380 480" stroke="rgba(255, 210, 105, 0.22)" stroke-width="1.5" stroke-dasharray="10 8" class="dash-flow-fast"/>
+          
+          <!-- ATC Navigational Compass & Range Rings -->
+          <circle cx="1100" cy="360" r="140" stroke="rgba(56, 189, 248, 0.18)" stroke-width="1.5" stroke-dasharray="6 6"/>
+          <circle cx="1100" cy="360" r="260" stroke="rgba(56, 189, 248, 0.1)" stroke-width="1"/>
+          <circle cx="1100" cy="360" r="400" stroke="rgba(56, 189, 248, 0.05)" stroke-width="1"/>
+          
+          <!-- Crosshair Radar Grid Lines -->
+          <line x1="1100" y1="80" x2="1100" y2="640" stroke="rgba(56, 189, 248, 0.12)" stroke-width="1"/>
+          <line x1="820" y1="360" x2="1380" y2="360" stroke="rgba(56, 189, 248, 0.12)" stroke-width="1"/>
+          
+          <!-- Live Waypoint Badges -->
+          <circle cx="120" cy="620" r="7" fill="#38bdf8"/>
+          <text x="140" y="626" fill="#38bdf8" font-family="monospace" font-size="14" font-weight="800">GYD // BAKU HUB</text>
+          
+          <circle cx="680" cy="310" r="6" fill="#ffd269"/>
+          <text x="700" y="316" fill="#ffd269" font-family="monospace" font-size="13" font-weight="700">IST // ISTANBUL CORRIDOR</text>
+          
+          <circle cx="1340" cy="360" r="8" fill="#38bdf8"/>
+          <text x="1190" y="330" fill="#38bdf8" font-family="monospace" font-size="14" font-weight="800">LHR // LONDON HEATHROW</text>
+        </svg>
+
+        <!-- Floating Live Telemetry Chips -->
+        <div class="bg-float-cards">
+          <div class="bg-card-chip chip-sky c-pos-1">
+            <span class="chip-dot dot-sky"></span>
+            <span class="chip-text">✈ CRUISE: MACH 0.85 · ALTITUDE 41,000 FT (FL410)</span>
+          </div>
+          <div class="bg-card-chip chip-sky c-pos-2">
+            <span class="chip-dot dot-gold"></span>
+            <span class="chip-text">🌐 120+ AIRLINES GDS &amp; PRIVATE CHARTER INTEGRATED</span>
+          </div>
+          <div class="bg-card-chip chip-sky c-pos-3">
+            <span class="chip-dot dot-sky"></span>
+            <span class="chip-text">🛎 24/7 VIP AEROSPACE CONCIERGE &amp; TRANSFERS</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="container project-grid">
+        <!-- Content Column -->
+        <div class="project-content">
+          <div class="project-tag-wrap">
+            <span class="project-num">03 / 04</span>
+            <span class="project-category">GLOBAL AVIATION & TRAVEL PLATFORM</span>
+          </div>
+          <h2 class="project-title">FSF GROUP</h2>
+          <p class="project-lead">
+            A comprehensive digital aviation and corporate travel infrastructure integrating international flight booking, private charter logistics, automated visa processing, and VIP corporate transfer dispatch into a single unified platform.
+          </p>
+
+          <!-- Interactive Flight Route Board -->
+          <div class="flight-board glass-card">
+            <div class="flight-board-header">
+              <span>GLOBAL FLIGHT CORRIDOR DISPATCH</span>
+              <span class="live-indicator"><span class="live-dot green"></span>ONLINE</span>
+            </div>
+            <div class="routes-list">
+              <div class="route-item active">
+                <span class="route-code">GYD ✈ IST</span>
+                <span class="route-city">BAKU → ISTANBUL</span>
+                <span class="route-status">MACH 0.84 · ON SCHEDULE</span>
+              </div>
+              <div class="route-item">
+                <span class="route-code">GYD ✈ DXB</span>
+                <span class="route-city">BAKU → DUBAI</span>
+                <span class="route-status">PRIVATE CHARTER · VIP</span>
+              </div>
+              <div class="route-item">
+                <span class="route-code">GYD ✈ LHR</span>
+                <span class="route-city">BAKU → LONDON</span>
+                <span class="route-status">NON-STOP · CRUISE FL380</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-tags">
+            <span>Global Aviation GDS</span>
+            <span>Automated Visa Engine</span>
+            <span>High-Availability APIs</span>
+          </div>
+
+          <div class="project-links">
+            <a href="https://github.com/seabuhi" target="_blank" rel="noopener" class="btn-primary magnetic">
+              <span>PLATFORM OVERVIEW</span>
+              <span class="btn-arrow">↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Presentation Showcase Column -->
+        <div class="project-showcase">
+          <div class="showcase-window glass-card">
+            <div class="window-bar">
+              <div class="window-dots"><span class="gold"></span><span class="gold"></span><span class="gold"></span></div>
+              <div class="window-url">
+                <span class="url-lock">✈</span>
+                <span class="url-text">https://fsfgroup.az/dispatch</span>
+                <span class="url-badge gold-badge">AVIATION GDS</span>
+              </div>
+              <div class="window-actions">
+                <span class="window-status-pill gold-pill">DISPATCH LIVE</span>
+              </div>
+            </div>
+            <div class="window-frame">
+              <img src="/images/fsf.jpg" alt="FSF Group Global Aviation Dashboard" class="showcase-img" loading="lazy">
+              <div class="floating-flight-card">
+                <div class="f-flight-route">GYD ➔ LHR</div>
+                <div class="f-flight-sub">BOMBARDIER GLOBAL 7500 · VIP CHARTER</div>
+              </div>
+            </div>
+            <div class="showcase-footer">
+              <div class="showcase-metric">
+                <span class="metric-val gold-text">Mach 0.84</span>
+                <span class="metric-lbl">Cruise Velocity</span>
+              </div>
+              <div class="showcase-metric">
+                <span class="metric-val gold-text">120+</span>
+                <span class="metric-lbl">Airlines Synced</span>
+              </div>
+              <div class="showcase-metric">
+                <span class="metric-val gold-text">24/7 VIP</span>
+                <span class="metric-lbl">Concierge Response</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════════════════════════
+         PROJECT 04: AZINET — UNIVERSITY SOCIAL NETWORK
+         ═════════════════════════════════════════════ -->
+    <section id="azinet" class="section project-section" data-project="azinet">
+      <!-- Section-Specific Background Graphic: Academic Synaptic Graph & Live Collaborative Pulse -->
+      <div class="section-bg-fx bg-fx-azinet" aria-hidden="true">
+        <div class="bg-glow bg-glow-magenta"></div>
+
+        <svg class="bg-svg-graphic" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Academic Synaptic Connection Mesh -->
+          <polygon points="260,340 600,160 880,420 520,660 200,560" stroke="rgba(255, 45, 136, 0.3)" stroke-width="2" fill="rgba(255, 45, 136, 0.03)" class="dash-flow-fast"/>
+          <polygon points="600,160 1140,220 1340,540 880,420" stroke="rgba(168, 85, 247, 0.25)" stroke-width="2" fill="rgba(168, 85, 247, 0.03)"/>
+          
+          <!-- Faculty Connectors with moving energy pulses -->
+          <line x1="260" y1="340" x2="880" y2="420" stroke="rgba(255, 45, 136, 0.2)" stroke-width="1.5" stroke-dasharray="6 4"/>
+          <line x1="600" y1="160" x2="520" y2="660" stroke="rgba(168, 85, 247, 0.2)" stroke-width="1.5" stroke-dasharray="6 4"/>
+
+          <!-- Vibrant University Hub Nodes -->
+          <circle cx="260" cy="340" r="9" fill="#ff2d88" class="pulse-node-magenta"/>
+          <circle cx="600" cy="160" r="10" fill="#a855f7" class="pulse-node-magenta"/>
+          <circle cx="880" cy="420" r="12" fill="#ff2d88" class="pulse-node-magenta"/>
+          <circle cx="1140" cy="220" r="8" fill="#a855f7" class="pulse-node-magenta"/>
+          <circle cx="1340" cy="540" r="8" fill="#ff2d88" class="pulse-node-magenta"/>
+          <circle cx="520" cy="660" r="9" fill="#a855f7" class="pulse-node-magenta"/>
+        </svg>
+
+        <!-- Floating Live Telemetry Chips -->
+        <div class="bg-float-cards">
+          <div class="bg-card-chip chip-magenta c-pos-1">
+            <span class="chip-dot dot-magenta"></span>
+            <span class="chip-text">🎓 #ADNSU_AZI · IT &amp; AI Faculty Collaboration Hub</span>
+          </div>
+          <div class="bg-card-chip chip-magenta c-pos-2">
+            <span class="chip-dot dot-magenta"></span>
+            <span class="chip-text">🚀 #ADNSU_RESEARCH · Engineering &amp; Robotics Lab Synced</span>
+          </div>
+          <div class="bg-card-chip chip-magenta c-pos-3">
+            <span class="chip-dot dot-green"></span>
+            <span class="chip-text">⚡ REAL-TIME WEBSOCKET FEED · &lt;15ms BROADCAST</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="container project-grid project-reverse">
+        <!-- Presentation Showcase Column -->
+        <div class="project-showcase">
+          <div class="showcase-window showcase-purple glass-card">
+            <div class="window-bar">
+              <div class="window-dots"><span class="magenta"></span><span class="magenta"></span><span class="magenta"></span></div>
+              <div class="window-url">
+                <span class="url-lock">🎓</span>
+                <span class="url-text">https://azinet.edu.az/feed</span>
+                <span class="url-badge purple-badge">ACADEMIC HUB</span>
+              </div>
+              <div class="window-actions">
+                <span class="window-status-pill purple-pill">5,200+ STUDENTS</span>
+              </div>
+            </div>
+            <div class="campus-showcase-inner">
+              <div class="campus-showcase-header">
+                <div class="campus-pill">#ADNSU</div>
+                <div class="campus-pill">#ADA_UNIVERSITY</div>
+                <div class="campus-pill">#BSU_CS</div>
+              </div>
+              <div class="campus-feed-card">
+                <div class="feed-user">
+                  <div class="feed-avatar">SK</div>
+                  <div class="feed-meta">
+                    <span class="feed-name">Səbuhi Khazimzada</span>
+                    <span class="feed-sub">AziNet v2.0 Architecture &amp; Team Matching Released</span>
+                  </div>
+                </div>
+                <p class="feed-body">Building cross-faculty student teams for national AI hackathons &amp; robotics research. Join the open collaboration repo! 🚀</p>
+                <div class="feed-project-tag">
+                  <span>📂 Project: Distributed Autonomous Nodes</span>
+                  <span class="tag-status">RECRUITING</span>
+                </div>
+                <div class="feed-actions">
+                  <button class="feed-btn reaction-btn" data-count="342">❤️ <span>342</span></button>
+                  <button class="feed-btn">💬 <span>58</span></button>
+                  <button class="feed-btn">⇄ <span>120</span></button>
+                  <button class="feed-btn feed-btn-accent">🚀 Apply to Team</button>
+                </div>
+              </div>
+              <div class="campus-stats-bar">
+                <div class="c-stat-box">
+                  <span class="c-stat-n">3+</span>
+                  <span class="c-stat-l">Universities</span>
+                </div>
+                <div class="c-stat-box">
+                  <span class="c-stat-n">180+</span>
+                  <span class="c-stat-l">Research Teams</span>
+                </div>
+                <div class="c-stat-box">
+                  <span class="c-stat-n">&lt; 15ms</span>
+                  <span class="c-stat-l">WebSocket Feed</span>
+                </div>
+              </div>
+            </div>
+            <div class="showcase-footer">
+              <div class="showcase-metric">
+                <span class="metric-val magenta-text">Verified .edu</span>
+                <span class="metric-lbl">Campus SSO Auth</span>
+              </div>
+              <div class="showcase-metric">
+                <span class="metric-val magenta-text">100% P2P</span>
+                <span class="metric-lbl">Student Resource Exchange</span>
+              </div>
+              <div class="showcase-metric">
+                <span class="metric-val magenta-text">Real-Time</span>
+                <span class="metric-lbl">Event Stream Engine</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content Column -->
+        <div class="project-content">
+          <div class="project-tag-wrap">
+            <span class="project-num">04 / 04</span>
+            <span class="project-category">ACADEMIC ECOSYSTEM &amp; SOCIAL NETWORK</span>
+          </div>
+          <h2 class="project-title">AZINET</h2>
+          <p class="project-lead">
+            The dedicated academic social nexus uniting students, researchers, and alumni across Azerbaijan's top universities (ADNSU, ADA, BSU). Features peer project collaboration, verified student communities, and academic resource exchange.
+          </p>
+
+          <div class="project-tags">
+            <span>Verified Campus Auth</span>
+            <span>Real-Time WebSocket Feed</span>
+            <span>Distributed Cache</span>
+            <span>Hackathon Matching</span>
+          </div>
+
+          <div class="project-links">
+            <a href="https://github.com/seabuhi" target="_blank" rel="noopener" class="btn-primary magnetic">
+              <span>EXPLORE AZINET</span>
+              <span class="btn-arrow">↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════════════════════════
+         SECTION: PHYSICAL NFC SMART CARD SHOWCASE
+         ═════════════════════════════════════════════ -->
+    <section id="nfc" class="section nfc-section">
+      <div class="container nfc-container">
+        <div class="nfc-text-wrap">
+          <div class="status-pill gold-pill">PHYSICAL HARDWARE INTEGRATION</div>
+          <h2 class="nfc-title">THE DIGITAL BUSINESS CARD THAT OPENS A UNIVERSE.</h2>
+          <p class="nfc-desc">
+            When someone taps my physical NFC card with their smartphone, this site opens instantly. Crafted from matte black aerospace titanium with embedded 13.56 MHz RFID microchips, it bridges tangible physical presence with digital craftsmanship.
+          </p>
+          <div class="nfc-features">
+            <div class="feat-item">
+              <span class="feat-icon">⚡</span>
+              <div>
+                <h4>Zero App Required</h4>
+                <p>Native iOS & Android background tag reading triggers seabuhi.com in milliseconds.</p>
+              </div>
+            </div>
+            <div class="feat-item">
+              <span class="feat-icon">🔒</span>
+              <div>
+                <h4>Encrypted Identity</h4>
+                <p>Stores verified cryptographic vCard, portfolio links, and cryptographic identity keys.</p>
+              </div>
+            </div>
+          </div>
+          <button id="tap-simulate-btn" class="btn-primary btn-gold magnetic">
+            <span>SIMULATE NFC TAP (AUDIO + HAPTIC)</span>
+            <span class="btn-icon">⚡</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════════════════════════
+         SECTION: ABOUT & ENGINEERING STACK
+         ═════════════════════════════════════════════ -->
+    <section id="about" class="section about-section">
+      <div class="container about-container">
+        <div class="about-header">
+          <span class="about-label">PHILOSOPHY & FOUNDATIONS</span>
+          <h2 class="about-quote">
+            "I believe software is most powerful when it bridges the gap between complex engineering, beautiful ergonomics, and tangible physical reality."
+          </h2>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-box glass-card">
+            <div class="skill-icon">⚙️</div>
+            <h3>Systems & Architecture</h3>
+            <p>Distributed backends, microservices, P2P mesh network topologies, WebSockets, high-concurrency event streams.</p>
+          </div>
+          <div class="skill-box glass-card">
+            <div class="skill-icon">💻</div>
+            <h3>Full-Stack & WebGL</h3>
+            <p>Modern JavaScript/TypeScript, Three.js, GLSL custom shaders, Node.js, Next.js/Vite, PostgreSQL, Redis.</p>
+          </div>
+          <div class="skill-box glass-card">
+            <div class="skill-icon">🚀</div>
+            <h3>Product Leadership</h3>
+            <p>0-to-1 startup execution, technical founding, product management, hardware NFC integration, scalable UI/UX.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════════════════════════
+         SECTION: CONTACT & FOOTER
+         ═════════════════════════════════════════════ -->
+    <section id="contact" class="section contact-section">
+      <div class="container contact-container">
+        <div class="contact-header">
+          <span class="status-pill">AVAILABLE FOR IMPACTFUL VENTURES</span>
+          <h2 class="contact-title">LET'S BUILD SOMETHING EXTRAORDINARY.</h2>
+          <p class="contact-sub">Have a visionary project, technical challenge, or venture to build together? Reach out directly.</p>
+        </div>
+
+        <div class="contact-cards">
+          <a href="mailto:seabuhikhazimzade@gmail.com" class="c-card glass-card magnetic">
+            <span class="c-label">DIRECT EMAIL</span>
+            <span class="c-val">seabuhikhazimzade@gmail.com</span>
+            <span class="c-arrow">↗</span>
+          </a>
+          <a href="https://www.github.com/seabuhi" target="_blank" rel="noopener" class="c-card glass-card magnetic">
+            <span class="c-label">GITHUB REPOSITORIES</span>
+            <span class="c-val">github.com/seabuhi</span>
+            <span class="c-arrow">↗</span>
+          </a>
+          <a href="https://www.linkedin.com/in/seabuhi-khazimzada-019402397/" target="_blank" rel="noopener" class="c-card glass-card magnetic">
+            <span class="c-label">LINKEDIN PROFILE</span>
+            <span class="c-val">seabuhi-khazimzada</span>
+            <span class="c-arrow">↗</span>
+          </a>
+          <a href="https://www.instagram.com/seabuhi" target="_blank" rel="noopener" class="c-card glass-card magnetic">
+            <span class="c-label">INSTAGRAM</span>
+            <span class="c-val">@seabuhi</span>
+            <span class="c-arrow">↗</span>
+          </a>
+        </div>
+
+        <footer class="footer">
+          <div class="footer-left">
+            <span>© 2026 SƏBUHİ KHAZIMZADA. ALL RIGHTS RESERVED.</span>
+          </div>
+          <div class="footer-right">
+            <span>CRAFTED WITH THREE.JS · LENIS · GSAP</span>
+          </div>
+        </footer>
+      </div>
+    </section>
+
+  </main>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
