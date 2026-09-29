@@ -1,0 +1,561 @@
+/**
+ * ULTRA-LUXURY CLAYMORPHIC MODAL & PROJECT DOSSIER
+ * Sculpted 3D clay tablet, recessed display bays, bouncy pills & cohesive typography
+ */
+
+/* Fixed Quantum Particle Canvas */
+#transition-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 99998;
+}
+
+/* Modal Master Wrapper */
+.savelya-modal-wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+  overflow-y: auto;
+}
+
+.savelya-modal-wrapper.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Frosted Radial Blur Backdrop */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(12, 16, 26, 0.88) 0%, rgba(6, 8, 14, 0.96) 100%);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  z-index: 1;
+}
+
+/* Modal Shell Container (Sculpted Clay Tablet) */
+.modal-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1220px;
+  max-height: 90vh;
+  background: #151d2c;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 36px;
+  box-shadow: 
+    var(--clay-card-shadow),
+    0 40px 100px -10px rgba(0, 0, 0, 0.95);
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 40px;
+  padding: 44px;
+  overflow: hidden;
+}
+
+/* Top Modal Action Bar (Close & Key Hint) */
+.modal-top-bar {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 10;
+}
+
+.modal-key-hint {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: #0d121c;
+  padding: 6px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: var(--clay-recessed);
+}
+
+/* Squishy Clay Close Button */
+.modal-close-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: var(--clay-btn-bg);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--clay-btn-shadow);
+  transition: all 0.25s var(--ease-bouncy);
+}
+
+.modal-close-btn:hover {
+  background: #25314a;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.24);
+  transform: translateY(-2px);
+  box-shadow: var(--clay-btn-hover);
+}
+
+.modal-close-btn:active {
+  transform: scale(0.95);
+  box-shadow: var(--clay-btn-pressed);
+}
+
+/* ═══════════════════════════════════════════════
+   MODAL HERO IMAGE (LEFT COLUMN - Recessed Clay Screen Well)
+   ═══════════════════════════════════════════════ */
+.modal-hero-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.modal-hero-image-wrap {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  border-radius: 26px;
+  overflow: hidden;
+  background: #080a11;
+  border: 1px solid rgba(0, 0, 0, 0.6);
+  box-shadow: var(--clay-recessed);
+  transition: box-shadow 0.4s ease;
+}
+
+.modal-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.6s var(--ease-expo);
+}
+
+.modal-hero-image-wrap:hover .modal-hero-img {
+  transform: scale(1.03);
+}
+
+/* Soft Clay Sheen */
+.modal-hero-image-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.02) 40%, transparent 65%);
+  z-index: 3;
+}
+
+/* Laser Sweep */
+.modal-laser-sweep {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.06) 50%,
+    transparent 100%
+  );
+  animation: laserSweep 4s ease-in-out infinite;
+  z-index: 2;
+}
+
+@keyframes laserSweep {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(200%); }
+}
+
+/* Modal Bottom Quick Nav Switcher */
+.modal-sub-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.modal-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: 14px;
+  background: var(--clay-btn-bg);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--clay-btn-shadow);
+  transition: all 0.25s var(--ease-bouncy);
+}
+
+.modal-nav-btn:hover {
+  background: #25314a;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.22);
+  transform: translateY(-2px);
+  box-shadow: var(--clay-btn-hover);
+}
+
+.modal-nav-btn:active {
+  transform: scale(0.95);
+  box-shadow: var(--clay-btn-pressed);
+}
+
+.modal-nav-shortcut {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* ═══════════════════════════════════════════════
+   MODAL DOSSIER CONTENT (RIGHT COLUMN)
+   ═══════════════════════════════════════════════ */
+.modal-dossier-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-y: auto;
+  max-height: 80vh;
+  padding-right: 12px;
+}
+
+.dossier-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  background: #192233;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #e2e8f0;
+  margin-bottom: 14px;
+  align-self: flex-start;
+  box-shadow: var(--clay-pill-shadow);
+}
+
+.badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+}
+
+.dossier-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.15;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+  padding-right: 170px;
+}
+
+.dossier-lead {
+  font-family: var(--font-body);
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: #cbd5e1;
+  line-height: 1.5;
+  margin-bottom: 18px;
+}
+
+/* Metadata Pills (Architect & Company) */
+.dossier-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.dossier-meta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #0d121c;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 8px 16px;
+  border-radius: 14px;
+  font-size: 0.78rem;
+  font-family: var(--font-mono);
+  box-shadow: var(--clay-recessed);
+}
+
+.dossier-meta-pill .meta-label {
+  color: var(--text-muted);
+}
+
+.dossier-meta-pill .meta-val {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.dossier-desc {
+  font-family: var(--font-body);
+  font-size: 0.94rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 24px;
+}
+
+/* KPI Stat Cards Grid (Recessed Clay Gauges) */
+.dossier-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.dossier-stat-card {
+  background: #0d121c;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 18px;
+  padding: 16px 20px;
+  box-shadow: var(--clay-recessed);
+  transition: transform 0.25s var(--ease-bouncy);
+}
+
+.dossier-stat-card:hover {
+  transform: translateY(-2px);
+}
+
+.stat-val {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.2;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.stat-label {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+/* Tech Tags */
+.dossier-tags-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.dossier-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  background: #192233;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 6px 14px;
+  border-radius: 12px;
+  box-shadow: var(--clay-pill-shadow);
+}
+
+/* Action Buttons */
+.dossier-action-bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.dossier-primary-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--clay-orange-bg);
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  padding: 13px 26px;
+  border-radius: 9999px;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  box-shadow: var(--clay-orange-shadow);
+  transition: all 0.25s var(--ease-bouncy);
+}
+
+.dossier-primary-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: var(--clay-orange-hover);
+}
+
+.dossier-primary-btn:active {
+  transform: scale(0.96);
+  box-shadow: var(--clay-orange-pressed);
+}
+
+.dossier-contact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--clay-btn-bg);
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 13px 24px;
+  border-radius: 9999px;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  cursor: pointer;
+  box-shadow: var(--clay-btn-shadow);
+  transition: all 0.25s var(--ease-bouncy);
+}
+
+.dossier-contact-btn:hover {
+  background: #25314a;
+  border-color: rgba(255, 255, 255, 0.24);
+  transform: translateY(-2px);
+  box-shadow: var(--clay-btn-hover);
+}
+
+.dossier-contact-btn:active {
+  transform: scale(0.96);
+  box-shadow: var(--clay-btn-pressed);
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE DESIGN (Full Mobile Scroll & Touch Layout)
+   ═══════════════════════════════════════════════ */
+@media (max-width: 992px) {
+  .savelya-modal-wrapper {
+    padding: 16px 10px;
+    align-items: flex-start;
+  }
+
+  .modal-container {
+    grid-template-columns: 1fr;
+    max-height: 92vh;
+    overflow-y: auto;
+    padding: 24px 18px 32px;
+    gap: 20px;
+    border-radius: 26px;
+  }
+
+  .modal-hero-image-wrap {
+    height: 230px;
+    border-radius: 18px;
+  }
+
+  .modal-dossier-content {
+    max-height: none;
+    overflow: visible;
+    padding-right: 0;
+  }
+
+  .dossier-title {
+    font-size: 1.65rem;
+    padding-right: 48px;
+  }
+
+  .dossier-lead {
+    font-size: 0.94rem;
+    margin-bottom: 14px;
+  }
+
+  .dossier-meta-row {
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .dossier-meta-pill {
+    padding: 6px 12px;
+    font-size: 0.74rem;
+  }
+
+  .dossier-desc {
+    font-size: 0.88rem;
+    line-height: 1.55;
+    margin-bottom: 18px;
+  }
+
+  .dossier-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .dossier-stat-card {
+    padding: 12px 14px;
+    border-radius: 14px;
+  }
+
+  .stat-val {
+    font-size: 1.15rem;
+  }
+
+  .stat-label {
+    font-size: 0.7rem;
+  }
+
+  .dossier-action-bar {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .dossier-primary-btn,
+  .dossier-contact-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 18px;
+  }
+
+  .modal-top-bar {
+    top: 14px;
+    right: 14px;
+  }
+
+  .modal-key-hint {
+    display: none;
+  }
+
+  .modal-close-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-hero-image-wrap {
+    height: 190px;
+  }
+  .dossier-stats-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}

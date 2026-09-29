@@ -1,0 +1,675 @@
+/**
+ * 3D CIRCULAR CAROUSEL STYLES - CLAYMORPHIC LUXURY
+ * Inflated 3D cards, recessed display bays, velvety surfaces & cohesive luxury typography
+ */
+
+.carousel-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 20px 70px;
+  overflow: hidden;
+  z-index: 2;
+}
+
+/* Header & Intro inside Section */
+.carousel-header-area {
+  text-align: center;
+  max-width: 840px;
+  margin-bottom: 50px;
+  z-index: 5;
+  pointer-events: auto;
+}
+
+.carousel-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: 9999px;
+  background: #182233;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #cbd5e1;
+  margin-bottom: 16px;
+  box-shadow: var(--clay-pill-shadow);
+}
+
+.carousel-pill-badge .pulse-beacon {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #38bdf8;
+  box-shadow: 0 0 8px #38bdf8;
+  animation: beaconPulse 2s infinite ease-in-out;
+}
+
+@keyframes beaconPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.6); opacity: 0.4; }
+}
+
+.carousel-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  margin-bottom: 14px;
+}
+
+.carousel-title .gradient-text {
+  color: #ffffff;
+  background: none;
+  -webkit-text-fill-color: initial;
+}
+
+.carousel-subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(0.95rem, 1.4vw, 1.12rem);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* ═══════════════════════════════════════════════
+   3D CAROUSEL VIEWPORT & STAGE
+   ═══════════════════════════════════════════════ */
+.carousel-stage {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  height: 560px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1600px;
+  perspective-origin: 50% 50%;
+  cursor: grab;
+  user-select: none;
+  touch-action: pan-y;
+  transition: filter 0.6s var(--ease-expo), transform 0.6s var(--ease-expo);
+  z-index: 4;
+}
+
+.carousel-stage.is-dragging {
+  cursor: grabbing;
+}
+
+.carousel-ring {
+  position: absolute;
+  width: var(--card-w, 280px);
+  height: var(--card-h, 390px);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* ═══════════════════════════════════════════════
+   CAROUSEL CARD (Claymorphic Cushion)
+   ═══════════════════════════════════════════════ */
+.carousel-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  will-change: transform, opacity, filter;
+  transition: box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 34px;
+  background: var(--clay-card-bg);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+  box-shadow: var(--clay-card-shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 22px;
+  transition: transform 0.45s var(--ease-bouncy), border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.carousel-card:hover .card-inner {
+  transform: translateY(-10px) scale(1.03);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 
+    var(--clay-card-hover),
+    0 0 35px var(--glow, rgba(0, 145, 255, 0.35));
+}
+
+.carousel-card.is-front .card-inner {
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+/* Card Media & Recessed Clay Screen Well (Ample space for info below) */
+.card-media {
+  position: absolute;
+  inset: 12px;
+  bottom: 168px;
+  z-index: 1;
+  overflow: hidden;
+  border-radius: 22px;
+  border: 1px solid rgba(0, 0, 0, 0.6);
+  box-shadow: var(--clay-recessed);
+  background: #080a11;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.6s var(--ease-expo);
+  filter: contrast(1.05) brightness(0.95);
+}
+
+.carousel-card:hover .card-image {
+  transform: scale(1.06);
+  filter: contrast(1.1) brightness(1.02);
+}
+
+.card-media-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg, 
+    rgba(8, 10, 17, 0.04) 0%, 
+    rgba(8, 10, 17, 0.25) 50%, 
+    rgba(8, 10, 17, 0.8) 85%, 
+    rgba(8, 10, 17, 0.95) 100%
+  );
+}
+
+/* Soft Velvety Specular Clay Sheen */
+.card-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.02) 40%, transparent 65%);
+  z-index: 3;
+}
+
+.card-scanline {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.18) 50%);
+  background-size: 100% 4px;
+  pointer-events: none;
+  opacity: 0.2;
+}
+
+/* Tactile Clay Corner Studs */
+.card-frame-brackets {
+  position: absolute;
+  inset: 16px;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.card-frame-brackets span {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #273146;
+  box-shadow: var(--clay-stud-shadow);
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.bracket-tl { top: 0; left: 0; }
+.bracket-tr { top: 0; right: 0; }
+.bracket-bl { bottom: 0; left: 0; }
+.bracket-br { bottom: 0; right: 0; }
+
+.carousel-card:hover .card-frame-brackets span {
+  filter: brightness(1.25);
+  transform: scale(1.15);
+}
+
+/* Card Header Badge (Clay Lozenges) */
+.card-header-badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 5;
+}
+
+.badge-index {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: #1b2436;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 5px 12px;
+  border-radius: 12px;
+  box-shadow: var(--clay-pill-shadow);
+}
+
+.badge-cat {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #e2e8f0;
+  background: #1b2436;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 5px 14px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: var(--clay-pill-shadow);
+}
+
+.badge-cat::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 
+    0 0 8px rgba(56, 189, 248, 0.6),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.8),
+    inset -1px -1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Card Bottom Info (Clean & Zero Overlap) */
+.card-info {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-code {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: 0.12em;
+  margin-bottom: 4px;
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: 1.22rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.2;
+  margin-bottom: 5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.card-summary {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: #94a3b8;
+  line-height: 1.4;
+  margin-bottom: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Inflated Bouncy Clay Action Pill */
+.card-action-cue {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  background: var(--clay-btn-bg);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: var(--clay-btn-shadow);
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+  transition: all 0.25s var(--ease-bouncy);
+}
+
+.carousel-card:hover .card-action-cue {
+  background: #25314a;
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: var(--clay-btn-hover);
+  transform: translateY(-2px) scale(1.02);
+}
+
+.carousel-card:active .card-action-cue {
+  transform: scale(0.96);
+  box-shadow: var(--clay-btn-pressed);
+}
+
+.cue-icon {
+  transition: transform 0.3s ease;
+  color: #ff6014;
+}
+
+.carousel-card:hover .cue-icon {
+  transform: translateX(4px);
+}
+
+/* ═══════════════════════════════════════════════
+   CLAYMORPHIC MASTER HUD CONTROLS DOCK
+   ═══════════════════════════════════════════════ */
+.carousel-controls-dock {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: 960px;
+  width: 92%;
+  margin-top: 50px;
+  padding: 14px 22px;
+  border-radius: 28px;
+  background: #151d2c;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: var(--clay-card-shadow);
+  z-index: 5;
+}
+
+.dock-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Squishy Clay Pushbuttons */
+.hud-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 16px;
+  background: var(--clay-btn-bg);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--clay-btn-shadow);
+  transition: all 0.25s var(--ease-bouncy);
+}
+
+.hud-btn:hover {
+  background: #25314a;
+  border-color: rgba(255, 255, 255, 0.22);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: var(--clay-btn-hover);
+}
+
+.hud-btn:active {
+  transform: scale(0.95);
+  box-shadow: var(--clay-btn-pressed);
+}
+
+.hud-btn.active {
+  background: #1c2638;
+  border-color: rgba(255, 255, 255, 0.24);
+  color: #ffffff;
+  box-shadow: 
+    inset 3px 3px 6px rgba(0, 0, 0, 0.7),
+    inset -2px -2px 4px rgba(255, 255, 255, 0.1),
+    0 0 16px rgba(255, 255, 255, 0.08);
+}
+
+.hud-icon-btn {
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+}
+
+/* Recessed Clay Mode Switcher Tray */
+.layout-switcher {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #0c111a;
+  padding: 5px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: var(--clay-recessed);
+}
+
+.layout-mode-btn {
+  padding: 7px 16px;
+  border-radius: 14px;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s var(--ease-bouncy);
+}
+
+.layout-mode-btn:hover {
+  color: var(--text-primary);
+}
+
+.layout-mode-btn.active {
+  background: #1e283b;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: var(--clay-btn-shadow);
+}
+
+/* Recessed Inset Clay Telemetry Pod */
+.dock-telemetry {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #0c111a;
+  padding: 8px 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: var(--clay-recessed);
+}
+
+.counter-badge {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.06em;
+}
+
+.active-title-pill {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  max-width: 170px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE DESIGN (Zero Collision & Touch Optimized)
+   ═══════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .carousel-section {
+    padding: 100px 16px 60px;
+  }
+  .carousel-stage {
+    height: 480px;
+  }
+  .carousel-controls-dock {
+    width: 95%;
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel-section {
+    padding: 85px 12px 40px;
+    min-height: auto;
+  }
+
+  .carousel-header-area {
+    margin-bottom: 24px;
+    padding: 0 8px;
+  }
+
+  .carousel-title {
+    font-size: clamp(1.65rem, 6.5vw, 2.3rem);
+    margin-bottom: 10px;
+  }
+
+  .carousel-subtitle {
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  .carousel-stage {
+    height: 410px;
+    perspective: 1100px;
+  }
+
+  /* Compact Card for Mobile */
+  .card-inner {
+    padding: 14px;
+    border-radius: 24px;
+  }
+
+  .card-media {
+    inset: 8px;
+    bottom: 120px;
+    border-radius: 16px;
+  }
+
+  .card-header-badge {
+    top: 14px;
+    left: 14px;
+    right: 14px;
+  }
+
+  .badge-index {
+    font-size: 0.68rem;
+    padding: 3px 8px;
+    border-radius: 8px;
+  }
+
+  .badge-cat {
+    font-size: 0.64rem;
+    padding: 3px 10px;
+  }
+
+  .card-title {
+    font-size: 1.02rem;
+    line-height: 1.25;
+    margin-bottom: 5px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-code {
+    font-size: 0.65rem;
+    margin-bottom: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .card-summary {
+    display: none; /* Hide summary on mobile cards so button & title breathe comfortably */
+  }
+
+  .card-action-cue {
+    padding: 7px 15px;
+    font-size: 0.74rem;
+    align-self: flex-start;
+  }
+
+  /* Compact Controls Dock on Mobile */
+  .carousel-controls-dock {
+    width: min(420px, calc(100% - 20px));
+    margin-top: 24px;
+    padding: 10px 14px;
+    border-radius: 20px;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .active-title-pill {
+    display: none;
+  }
+
+  .layout-switcher {
+    display: none; /* Hide complex mode switcher on phone to avoid horizontal clutter */
+  }
+
+  .hud-btn {
+    padding: 8px 14px;
+    border-radius: 12px;
+    font-size: 0.72rem;
+  }
+
+  .hud-icon-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 12px;
+  }
+
+  .dock-telemetry {
+    padding: 6px 12px;
+    border-radius: 12px;
+  }
+
+  .counter-badge {
+    font-size: 0.76rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-stage {
+    height: 390px;
+    perspective: 950px;
+  }
+  .card-media {
+    bottom: 116px;
+  }
+  .card-title {
+    font-size: 0.96rem;
+    line-height: 1.22;
+  }
+  .card-action-cue {
+    padding: 6px 13px;
+    font-size: 0.7rem;
+  }
+}

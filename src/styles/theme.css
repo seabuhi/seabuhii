@@ -1,0 +1,230 @@
+/**
+ * SAVELYA LUXURY CYBERNETIC DESIGN SYSTEM
+ * Curated HSL Tokens, Typography & Ambient Aesthetics
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+  /* Claymorphic Base & Surface Materials */
+  --bg-deep: #0c0f18;
+  --bg-surface: #141a29;
+  --bg-surface-elevated: #1a2336;
+  --bg-card: #182030;
+  --bg-glass: rgba(255, 255, 255, 0.05);
+  --bg-glass-strong: rgba(20, 26, 40, 0.95);
+
+  /* Clay Dual-Inset & Floating Shadows (The Signature of Claymorphism) */
+  --clay-card-bg: #182030;
+  --clay-card-shadow: 
+    inset 4px 4px 8px rgba(255, 255, 255, 0.16),
+    inset -6px -6px 12px rgba(0, 0, 0, 0.65),
+    0 24px 48px -10px rgba(0, 0, 0, 0.8),
+    0 8px 18px rgba(0, 0, 0, 0.5);
+
+  --clay-card-hover: 
+    inset 5px 5px 10px rgba(255, 255, 255, 0.24),
+    inset -7px -7px 14px rgba(0, 0, 0, 0.7),
+    0 32px 64px -10px rgba(0, 0, 0, 0.9),
+    0 12px 24px rgba(0, 0, 0, 0.6);
+
+  --clay-btn-bg: #1f273b;
+  --clay-btn-shadow: 
+    inset 3px 3px 6px rgba(255, 255, 255, 0.22),
+    inset -4px -4px 8px rgba(0, 0, 0, 0.55),
+    0 8px 16px rgba(0, 0, 0, 0.6);
+
+  --clay-btn-hover: 
+    inset 4px 4px 7px rgba(255, 255, 255, 0.32),
+    inset -4px -4px 8px rgba(0, 0, 0, 0.6),
+    0 12px 22px rgba(0, 0, 0, 0.7);
+
+  --clay-btn-pressed: 
+    inset 4px 4px 8px rgba(0, 0, 0, 0.7),
+    inset -2px -2px 5px rgba(255, 255, 255, 0.1),
+    0 2px 4px rgba(0, 0, 0, 0.5);
+
+  /* Colorful Inflated Clay Buttons */
+  --clay-orange-bg: #ff6014;
+  --clay-orange-shadow: 
+    inset 3px 3px 6px rgba(255, 255, 255, 0.55),
+    inset -4px -4px 8px rgba(160, 36, 0, 0.7),
+    0 12px 25px rgba(255, 96, 20, 0.45);
+
+  --clay-orange-hover: 
+    inset 4px 4px 8px rgba(255, 255, 255, 0.65),
+    inset -5px -5px 10px rgba(150, 30, 0, 0.75),
+    0 16px 32px rgba(255, 96, 20, 0.55);
+
+  --clay-orange-pressed: 
+    inset 4px 4px 8px rgba(120, 24, 0, 0.8),
+    inset -2px -2px 5px rgba(255, 255, 255, 0.2),
+    0 3px 6px rgba(255, 96, 20, 0.3);
+
+  --clay-cyan-bg: #00d6b9;
+  --clay-cyan-shadow: 
+    inset 3px 3px 6px rgba(255, 255, 255, 0.6),
+    inset -4px -4px 8px rgba(0, 110, 95, 0.7),
+    0 12px 25px rgba(0, 214, 185, 0.4);
+
+  --clay-cyan-hover: 
+    inset 4px 4px 8px rgba(255, 255, 255, 0.7),
+    inset -5px -5px 10px rgba(0, 100, 85, 0.75),
+    0 16px 32px rgba(0, 214, 185, 0.5);
+
+  --clay-pill-shadow: 
+    inset 2px 2px 4px rgba(255, 255, 255, 0.22),
+    inset -2px -2px 4px rgba(0, 0, 0, 0.5),
+    0 4px 8px rgba(0, 0, 0, 0.4);
+
+  --clay-stud-shadow: 
+    inset 1.5px 1.5px 3px rgba(255, 255, 255, 0.45),
+    inset -2px -2px 3px rgba(0, 0, 0, 0.6),
+    0 2px 5px rgba(0, 0, 0, 0.6);
+
+  --clay-recessed: 
+    inset 5px 5px 10px rgba(0, 0, 0, 0.75),
+    inset -3px -3px 6px rgba(255, 255, 255, 0.08),
+    0 1px 0 rgba(255, 255, 255, 0.1);
+
+  /* Clay Borders */
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-medium: rgba(255, 255, 255, 0.16);
+
+  /* Cohesive Monochromatic Luxury Text Palette (No rainbow text) */
+  --text-primary: #ffffff;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-accent: #f8fafc;
+
+  /* Brand Accents - Clean, Controlled */
+  --accent-cyan: #38bdf8;
+  --accent-blue: #3b82f6;
+  --accent-purple: #818cf8;
+  --accent-amber: #f59e0b;
+  --accent-orange: #ff6014;
+  --accent-emerald: #10b981;
+  --accent-rose: #f43f5e;
+
+  /* Typography - 100% Azerbaijani Language & 'ə' / 'Ə' Support */
+  --font-display: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Bouncy Clay Transitions */
+  --ease-bouncy: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --duration-normal: 0.35s;
+  --duration-slow: 0.65s;
+
+  /* Layout */
+  --max-w-content: 1380px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  background-color: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
+  background-color: var(--bg-deep);
+  background-image: 
+    radial-gradient(ellipse at 50% -10%, rgba(45, 55, 78, 0.45) 0%, transparent 70%),
+    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.035) 1px, transparent 0);
+  background-size: 100% 100%, 24px 24px;
+  color: var(--text-primary);
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+/* Background Micro-Grid & Ambient Radial Glows */
+.bg-ambient-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.bg-ambient-layer::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: 20%;
+  width: 65vw;
+  height: 65vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 145, 255, 0.07) 0%, rgba(157, 78, 221, 0.04) 45%, transparent 70%);
+  filter: blur(90px);
+  animation: ambientFloat 22s ease-in-out infinite alternate;
+}
+
+.bg-ambient-layer::after {
+  content: '';
+  position: absolute;
+  bottom: -25%;
+  right: 15%;
+  width: 55vw;
+  height: 55vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 94, 0, 0.06) 0%, rgba(0, 245, 212, 0.04) 50%, transparent 70%);
+  filter: blur(100px);
+  animation: ambientFloat 26s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes ambientFloat {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-4%, 6%) scale(1.06); }
+  100% { transform: translate(5%, -3%) scale(0.97); }
+}
+
+.bg-grid-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(circle at 50% 50%, black 45%, transparent 88%);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, black 45%, transparent 88%);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-cyan);
+}
+
+/* Kinetic Selection */
+::selection {
+  background: rgba(0, 245, 212, 0.3);
+  color: #fff;
+}
