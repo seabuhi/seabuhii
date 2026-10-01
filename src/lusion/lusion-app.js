@@ -390,24 +390,39 @@ class LusionApp {
   }
 
   setupModals() {
-    // 1. Poster Modal
+    // 0. Smooth scroll for all links leading to #reklam-afisasi
+    const afisaLinks = document.querySelectorAll('a[href^="#reklam-afisasi"]');
+    afisaLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.getElementById('reklam-afisasi');
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          if (this.audio) this.audio.playChime(620);
+        }
+      });
+    });
+
+    // 1. Poster Modal (if present)
     const openPosterBtns = document.querySelectorAll('.open-poster-modal');
     const posterModal = document.getElementById('poster-modal-overlay');
     const closePosterBtn = document.getElementById('close-poster-modal');
     const printPosterBtn = document.getElementById('btn-print-poster');
 
-    openPosterBtns.forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (posterModal) posterModal.classList.add('active');
-        this.audio.playChime(620);
+    if (posterModal) {
+      openPosterBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          posterModal.classList.add('active');
+          if (this.audio) this.audio.playChime(620);
+        });
       });
-    });
 
-    if (closePosterBtn && posterModal) {
-      closePosterBtn.addEventListener('click', () => {
-        posterModal.classList.remove('active');
-      });
+      if (closePosterBtn) {
+        closePosterBtn.addEventListener('click', () => {
+          posterModal.classList.remove('active');
+        });
+      }
     }
 
     if (printPosterBtn) {

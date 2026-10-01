@@ -2430,19 +2430,58 @@ body {
     text-align: center;
   }
 
-  /* Floating HUD Mode Selector */
+  /* Floating Quick Jump Dock for Mobile */
+  .lusion-mobile-floating-dock {
+    display: block;
+    position: fixed;
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 24px);
+    max-width: 440px;
+    z-index: 999999;
+    pointer-events: auto;
+  }
+
+  .lusion-floating-jump-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 18px;
+    background: rgba(8, 11, 18, 0.94);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1.5px solid rgba(255, 94, 26, 0.7);
+    border-radius: 20px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.9), 0 0 30px rgba(255, 94, 26, 0.45);
+    text-decoration: none;
+    color: #ffffff;
+    transition: transform 0.2s ease;
+  }
+
+  .lusion-floating-jump-card:active {
+    transform: scale(0.97);
+  }
+
+  /* Floating HUD Mode Selector (Positioned comfortably above jump card on mobile) */
   .hud-canvas-modes {
-    bottom: 14px;
+    bottom: 76px;
     max-width: 95vw;
     width: auto;
     padding: 4px 6px;
     gap: 4px;
+    z-index: 85;
   }
   .hud-mode-btn {
     padding: 6px 12px;
     font-size: 0.68rem;
     letter-spacing: 0.04em;
   }
+}
+
+.lusion-mobile-floating-dock {
+  display: none;
 }
 
 @media (max-width: 480px) {

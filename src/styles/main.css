@@ -830,12 +830,10 @@
   50% { transform: scale(1.4); opacity: 0.6; }
 }
 
-.afisa-label-full {
+.afisa-label {
   display: inline;
-}
-
-.afisa-label-mobile {
-  display: none;
+  font-weight: 800;
+  letter-spacing: 0.04em;
 }
 
 .carousel-afisa-badge {
@@ -862,23 +860,90 @@
   transform: translateY(-1px);
 }
 
+/* Hero Center Prominent Action Button */
+.carousel-hero-afisa-cta {
+  margin: 22px auto 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 480px;
+  position: relative;
+  z-index: 25;
+}
+
+.hero-afisa-prominent-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  width: 100%;
+  padding: 13px 20px;
+  background: linear-gradient(135deg, rgba(20, 24, 36, 0.95), rgba(12, 15, 24, 0.95));
+  border: 1.5px solid #ff6014;
+  border-radius: 20px;
+  text-decoration: none;
+  color: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 96, 20, 0.35);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-afisa-prominent-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  border-color: #ff8838;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 0 0 35px rgba(255, 96, 20, 0.6);
+}
+
+.hero-afisa-prominent-btn:active {
+  transform: scale(0.97);
+}
+
+.hero-afisa-btn-text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  text-align: left;
+}
+
+.hero-afisa-btn-title {
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+}
+
+.hero-afisa-btn-sub {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: #ff914d;
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+}
+
+.hero-afisa-btn-arrow {
+  font-size: 1.1rem;
+  color: #ff6014;
+  font-weight: 800;
+  transition: transform 0.2s ease;
+}
+
+.hero-afisa-prominent-btn:hover .hero-afisa-btn-arrow {
+  transform: translateX(4px);
+  color: #ff8838;
+}
+
 .mobile-floating-afisa-dock {
   display: none;
 }
 
 @media (max-width: 768px) {
-  .afisa-label-full {
-    display: none;
-  }
-  .afisa-label-mobile {
-    display: inline;
-    font-weight: 800;
-    letter-spacing: 0.05em;
-  }
   .nav-afisa-btn {
     padding: 7px 12px;
     font-size: 0.72rem;
-    border-radius: 12px;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, rgba(255, 96, 20, 0.35), rgba(255, 96, 20, 0.15));
+    border: 1px solid #ff6014;
+    box-shadow: 0 0 15px rgba(255, 96, 20, 0.5);
   }
 
   .carousel-afisa-badge {
@@ -891,12 +956,12 @@
   .mobile-floating-afisa-dock {
     display: block;
     position: fixed;
-    bottom: 18px;
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px));
     left: 50%;
     transform: translateX(-50%);
-    width: calc(100% - 28px);
-    max-width: 420px;
-    z-index: 99999;
+    width: calc(100% - 24px);
+    max-width: 440px;
+    z-index: 9999999;
     pointer-events: auto;
   }
 
@@ -906,12 +971,12 @@
     justify-content: space-between;
     gap: 12px;
     padding: 12px 18px;
-    background: rgba(10, 14, 24, 0.92);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 96, 20, 0.55);
+    background: rgba(10, 14, 24, 0.94);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1.5px solid rgba(255, 96, 20, 0.65);
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.85), 0 0 30px rgba(255, 96, 20, 0.35);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.88), 0 0 35px rgba(255, 96, 20, 0.45);
     text-decoration: none;
     color: #fff;
     transition: transform 0.2s ease;
