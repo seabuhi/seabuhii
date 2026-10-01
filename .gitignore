@@ -6,3 +6,5 @@ dist/
 .env.local
 .vscode/
 .idea/
+deploy_to_server.py
+download_models.js

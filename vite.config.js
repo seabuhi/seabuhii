@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite';
+import { resolve } from 'path';
 
 export default defineConfig({
   root: '.',
@@ -6,8 +7,11 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
-    minify: 'oxc',
     rollupOptions: {
+      input: {
+        main: resolve(import.meta.dirname, 'index.html'),
+        lusion: resolve(import.meta.dirname, 'lusion.html'),
+      },
       output: {
         manualChunks(id) {
           if (id.includes('three')) {

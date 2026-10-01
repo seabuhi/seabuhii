@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>SAVELYA // Hardware & Software Solutions — Reklam Afişası & Showcase</title>
+
+  <!-- SEO & Social Meta -->
+  <meta name="description" content="Savelya MMC — Qabaqcıl Aparat və Proqram Təminatı Həlləri (Hardware & Software Engineering). Lusion dizayn fəlsəfəsində 3D interaktiv reklam afişası və mühəndislik platforması.">
+  <meta property="og:title" content="SAVELYA // Hardware & Software Solutions — Reklam Afişası & Showcase">
+  <meta property="og:description" content="Maddi mikrokontrollerlər, sənaye IoT və kənar süni intellektdən tutmuş paylanmış bulud platformalarına qədər tam spektr həllər.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#050608">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23ff5e1a'/><path d='M8 20L16 8L24 20H18L16 16L14 20H8Z' fill='white'/></svg>">
+
+  <!-- Modern Typography Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="/src/styles/lusion.css">
+</head>
+<body>
+
+  <!-- GLOBAL 3D EARTH PRELOADER -->
+  <div id="global-earth-loader" class="global-earth-loader">
+    <div class="earth-loader-spinner"></div>
+    <span id="global-earth-loader-text" class="earth-loader-label">3D YER KÜRƏSİ VƏ 3D MODELLƏR YÜKLƏNİR...</span>
+    <div class="earth-loader-bar-track">
+      <div id="global-earth-loader-bar" class="earth-loader-bar-fill"></div>
+    </div>
+  </div>
+
+  <!-- REAL-TIME 3D WEBGL MASTER CANVAS (EARTH.GLB & 3D HARDWARE) -->
+  <div id="lusion-canvas-container" aria-label="3D Interactive Canvas"></div>
+
+  <!-- CUSTOM MAGNETIC CURSOR -->
+  <div id="lusion-cursor" aria-hidden="true">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+    <div class="cursor-label"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       TOP FLOATING HUD & NAVBAR
+       ═══════════════════════════════════════════════ -->
+  <header class="lusion-navbar">
+    <a href="#" class="brand-wrapper interactive-zone">
+      <div class="brand-icon-chip">
+        <img src="/images/savelya_brand.jpg" alt="Savelya Logo">
+      </div>
+      <div class="brand-titles">
+        <div class="brand-name-h1">
+          SAVELYA
+          <span class="brand-badge-hw-sw">HW × SW</span>
+        </div>
+        <span class="brand-subline">HARDWARE &amp; SOFTWARE ARCHITECTURE</span>
+      </div>
+    </a>
+
+    <!-- Center Live Telemetry -->
+    <div class="nav-center-status">
+      <div class="status-beacon"></div>
+      <span class="status-label">BAKU HQ // AKTİV MÜHƏNDİSLİK MƏRKƏZİ // 0.2ms</span>
+    </div>
+
+    <!-- Actions -->
+    <div class="nav-actions-group interactive-zone">
+      <!-- Return to 3D Carousel (Preserving original work) -->
+      <a href="/index.html" class="nav-pill-btn btn-return" data-cursor="3D KARUSEL">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        3D KARUSELƏ QAYIT
+      </a>
+
+      <!-- Open Advertising Poster Modal -->
+      <button class="nav-pill-btn btn-poster open-poster-modal" data-cursor="AFİŞA">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="9" y1="3" x2="9" y2="21"></line>
+        </svg>
+        REKLAM AFİŞASI
+      </button>
+
+      <!-- Web Audio Synthesizer Toggle -->
+      <button id="nav-sound-toggle" class="nav-icon-toggle" aria-label="Səs Rejimi" data-cursor="AUDIO">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════
+       CANVAS HUD CONTROLS (Floating 3D Mode Selector)
+       ═══════════════════════════════════════════════ -->
+  <aside class="hud-canvas-modes interactive-zone" aria-label="3D Matrix Mode Selector">
+    <button class="hud-mode-btn active" data-mode="all" data-cursor="SİNERGİYA">
+      <span>●</span> BÜTÜN SİSTEMLƏR
+    </button>
+    <button class="hud-mode-btn" data-mode="hardware" data-cursor="HARDWARE">
+      <span>⚡</span> APARAT (HARDWARE)
+    </button>
+    <button class="hud-mode-btn" data-mode="software" data-cursor="SOFTWARE">
+      <span>◈</span> PROQRAM (SOFTWARE)
+    </button>
+  </aside>
+
+  <!-- ═══════════════════════════════════════════════
+       PAGE CONTENT WRAPPER
+       ═══════════════════════════════════════════════ -->
+  <main class="lusion-content-wrapper">
+
+    <!-- ─────────────────────────────────────────────
+         SECTION 1: HERO EDITORIAL (Lusion Style)
+         ───────────────────────────────────────────── -->
+    <section class="hero-editorial-section">
+      <div class="hero-eyebrow-chip interactive-zone">
+        <span>[SAVELYA MMC]</span> APARAT VƏ PROQRAM MÜHƏNDİSLİYİ
+      </div>
+
+      <h1 class="hero-title-giant">
+        <span class="gradient-hw">CİHAZI YIĞIRIQ.</span><br>
+        <span class="gradient-sw">KODUNU YAZIRIQ.</span><br>
+        İŞİ TƏHVİL VERİRİK.
+      </h1>
+
+      <div class="hero-bottom-grid">
+        <div class="hero-manifesto-text">
+          <strong>Savelya MMC</strong> — istənilən elektron avadanlığı sıfırdan layihələndirən, daxili mikrokontroller proqramını yazan və telefon/kompüter üçün canlı idarəetmə panelini təhvil verən milli mühəndislik mərkəzidir. İki fərqli şirkət axtarmağa ehtiyac yoxdur — <strong>həm aparat, həm proqram</strong> tək ünvanda.
+        </div>
+
+        <div class="hero-stats-duo">
+          <div class="stat-item">
+            <span class="stat-val hw">100%</span>
+            <span class="stat-tag">Milli Mühəndislik</span>
+          </div>
+          <div class="stat-item">
+            <a href="tel:+994103877511" style="text-decoration:none;">
+              <span class="stat-val sw" style="font-size:1.8rem; letter-spacing:0;">+994 10 387 75 11</span>
+            </a>
+            <span class="stat-tag">Birbaşa Əlaqə Nömrəsi</span>
+          </div>
+        </div>
+
+        <div class="hero-cta-column interactive-zone">
+          <button class="btn-hero-primary open-poster-modal" data-cursor="AFİŞANI AÇ">
+            <span>⚡ REKLAM AFİŞASINA BAX</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+          <div class="hero-scroll-hint">
+            <span>AŞAĞI FIRLAYIN // HƏLLƏR</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <polyline points="19 12 12 19 5 12"></polyline>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────────────────────
+         KINETIC MARQUEE RUNNER
+         ───────────────────────────────────────────── -->
+    <div class="marquee-ribbon" aria-hidden="true">
+      <div class="marquee-track">
+        <div class="marquee-item">SAVELYA // APARAT VƏ PROQRAM MÜHƏNDİSLİYİ <span class="sep"></span></div>
+        <div class="marquee-item">XÜSUSİ PCB LÖVHƏLƏR <span class="sep cyan"></span></div>
+        <div class="marquee-item">SƏNAYE VƏ KƏND TƏSƏRRÜFATI AVTOMATLAŞDIRILMASI <span class="sep"></span></div>
+        <div class="marquee-item">PİLOTSUZ DRON SİSTEMLƏRİ <span class="sep cyan"></span></div>
+        <div class="marquee-item">GPS VƏ LORA TELEMETRİYA <span class="sep"></span></div>
+        <div class="marquee-item">DAXİLİ MİKROKONTROLLER PROQRAMLAŞDIRILMASI <span class="sep cyan"></span></div>
+        <div class="marquee-item">CANLI CRM VƏ ERP İDARƏETMƏ PANELLƏRİ <span class="sep"></span></div>
+        <!-- Duplicated for seamless loop -->
+        <div class="marquee-item">SAVELYA // APARAT VƏ PROQRAM MÜHƏNDİSLİYİ <span class="sep"></span></div>
+        <div class="marquee-item">XÜSUSİ PCB LÖVHƏLƏR <span class="sep cyan"></span></div>
+        <div class="marquee-item">SƏNAYE VƏ KƏND TƏSƏRRÜFATI AVTOMATLAŞDIRILMASI <span class="sep"></span></div>
+        <div class="marquee-item">PİLOTSUZ DRON SİSTEMLƏRİ <span class="sep cyan"></span></div>
+        <div class="marquee-item">GPS VƏ LORA TELEMETRİYA <span class="sep"></span></div>
+        <div class="marquee-item">DAXİLİ MİKROKONTROLLER PROQRAMLAŞDIRILMASI <span class="sep cyan"></span></div>
+        <div class="marquee-item">CANLI CRM VƏ ERP İDARƏETMƏ PANELLƏRİ <span class="sep"></span></div>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────────────────
+         SECTION 2: REKLAM AFİŞASI (BILLBOARD SHOWCASE WITH 3D LIVING EARTH)
+         ───────────────────────────────────────────── -->
+    <section id="reklam-afisasi" class="poster-campaign-section">
+      <div class="section-header-tag">
+        <div class="sec-tag-left">
+          <span class="sec-category-label">[ RƏSMİ TƏQDİMAT AFİŞASI // 2026 ]</span>
+          <h2 class="sec-heading-h2">SAVELYA APARAT VƏ PROQRAM HƏLLƏRİ</h2>
+        </div>
+        <div class="sec-desc-lead">
+          Elektronika və proqramlaşdırma üzrə bütün imkanlarımızı əks etdirən canlı 3D qlobuslu rəsmi reklam afişamız.
+        </div>
+      </div>
+
+      <!-- THE ADVERTISING BILLBOARD POSTER CONTAINER (FROSTED GLASS OVER MASTER 3D EARTH) -->
+      <div class="billboard-poster-container interactive-zone">
+        <!-- Foreground Content Layer -->
+        <div class="poster-foreground-content">
+          <!-- Top Bar -->
+          <div class="poster-top-telemetry">
+            <div class="poster-stamp">
+              <span class="poster-code-badge">RƏSMİ AFİŞA</span>
+              <span>SAVELYA MMC // MİLLİ APARAT VƏ PROQRAM MƏRKƏZİ</span>
+            </div>
+            <div class="poster-actions-right">
+              <a href="tel:+994103877511" class="poster-btn-action" style="color:var(--hw-orange); font-weight:800; border-color:var(--border-glow-hw);">
+                📞 +994 10 387 75 11
+              </a>
+              <button class="poster-btn-action open-poster-modal" title="Afişanı Tam Ekran Aç">
+                TAM EKRAN
+              </button>
+              <button id="btn-print-poster" class="poster-btn-action" title="Afişanı Çap Et / PDF Saxla">
+                ÇAP ET
+              </button>
+            </div>
+          </div>
+
+          <!-- 3D Hardware Model Switcher Tabs (KOMPÜTER, DRON, İŞ STANSİYASI) -->
+          <div class="model-tabs-bar" role="tablist" aria-label="3D Model Seçimi">
+            <span class="model-tabs-title">[ CANLI 3D VİTRİN ]:</span>
+            <button class="earth-hw-tab-btn model-tab-btn active" data-model="desktop" role="tab" data-cursor="3D PC">
+              <span>💻</span> SƏNAYE KOMPÜTERİ (DESKTOP)
+            </button>
+            <button class="earth-hw-tab-btn model-tab-btn" data-model="drone" role="tab" data-cursor="3D DRON">
+              <span>🚁</span> PİLOTSUZ DRON SİSTEMİ
+            </button>
+            <button class="earth-hw-tab-btn model-tab-btn" data-model="personal" role="tab" data-cursor="3D STANSİYA">
+              <span>🖥️</span> APARAT İŞ STANSİYASI
+            </button>
+          </div>
+
+          <!-- Main Graphic Canvas -->
+          <div class="poster-graphic-canvas-wrap">
+            <!-- Left Visual: REAL-TIME 3D GLB HARDWARE VIEWPORT -->
+            <div class="poster-left-visual">
+              <div id="poster-3d-viewport" class="poster-3d-viewport" title="Modeli fırlatmaq üçün sıxıb fırladın"></div>
+
+              <div id="poster-3d-loader" class="poster-3d-loader">
+                <div class="loader-spinner"></div>
+                <span id="poster-3d-loader-text">3D MODEL YÜKLƏNİR...</span>
+                <div class="loader-progress-track">
+                  <div id="poster-3d-progress-bar" class="loader-progress-fill"></div>
+                </div>
+              </div>
+
+              <!-- Floating 3D Controls HUD Toolbar -->
+              <div class="poster-3d-controls-hud">
+                <button id="btn-3d-autorotate" class="btn-3d-hud active" title="Avtomatik Fırlanma">
+                  <span>FIRLANMA</span>
+                </button>
+                <button id="btn-3d-wireframe" class="btn-3d-hud" title="Wireframe Skelet Görünüşü">
+                  <span>WİREFRAME</span>
+                </button>
+                <button id="btn-3d-reset" class="btn-3d-hud" title="Baxışı Sıfırla">
+                  <span>SIFIRLA</span>
+                </button>
+              </div>
+
+              <!-- Hologram HUD Overlay -->
+              <div class="poster-hologram-hud">
+                <div class="hologram-top-badge">
+                  <span class="status-beacon"></span>
+                  <span id="poster-3d-model-tag">MİLLİ İSTEHSAL // REAL 3D MODEL</span>
+                </div>
+
+                <div class="hologram-bottom-specs">
+                  <div class="holo-spec-title">
+                    <span id="poster-3d-model-name">SAVELYA SƏNAYE KOMPÜTERİ (DESKTOP)</span>
+                    <span style="color: var(--hw-orange);">3D GLB CANLI</span>
+                  </div>
+                  <div id="poster-3d-model-desc" class="holo-spec-desc">
+                    Zavod və idarəetmə mərkəzləri üçün hazırladığımız sənaye dözümlü hesablama sistemi.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Technical Typography & Specs -->
+            <div class="poster-right-details">
+              <div class="poster-header-titles">
+                <span class="poster-campaign-subtitle">TƏK BİR ÜNVANDA // AÇAR TƏHVİL HƏLLƏR</span>
+                <h3 class="poster-title-editorial">
+                  HƏM APARATI YIĞIRIQ, HƏM DƏ PROQRAMINI YAZIRIQ.
+                </h3>
+                <p class="poster-narrative">
+                  İdeyanız var, lakin həm elektron dövrəni kimə yığdıracağınızı, həm də onun proqramını kimə yazdıracağınızı bilmirsiniz? Savelya MMC bütün bu prosesi təkbaşına icra edir: lövhəni çəkirik, hissələri lehimləyirik, daxili kodunu yazırıq və telefonunuzda rahat idarəetmə paneli qurub təhvil veririk.
+                </p>
+              </div>
+
+              <!-- Dynamic Model Technical Specifications -->
+              <div id="poster-3d-specs-list" class="model-specs-grid">
+                <div class="model-spec-row">
+                  <span class="m-spec-lbl">KORPUS:</span>
+                  <span class="m-spec-val">CNC Alüminium / Polad</span>
+                </div>
+                <div class="model-spec-row">
+                  <span class="m-spec-lbl">SOYUTMA:</span>
+                  <span class="m-spec-val">İkili İstilik Borusu</span>
+                </div>
+                <div class="model-spec-row">
+                  <span class="m-spec-lbl">İŞ TEMPERATURU:</span>
+                  <span class="m-spec-val">-20°C ... +70°C</span>
+                </div>
+                <div class="model-spec-row">
+                  <span class="m-spec-lbl">SƏNAYE PORTLARI:</span>
+                  <span class="m-spec-val">CAN, RS-485, GbE</span>
+                </div>
+              </div>
+
+              <!-- Dual Matrix Columns -->
+              <div class="poster-spec-matrix">
+                <!-- Hardware Column -->
+                <div class="spec-column-box hw">
+                  <div class="spec-col-header hw">
+                    <span>⚡</span> NƏ TİP APARATLAR (HARDWARE) YIĞIRIQ?
+                  </div>
+                  <ul class="spec-features-list">
+                    <li>Xüsusi Elektron Lövhələr (PCB Dizaynı və Lehimlənməsi)</li>
+                    <li>Zavod və Sexlər üçün Sənaye Avtomatlaşdırılması</li>
+                    <li>Pilotsuz Uçuş Aparatları (Dronlar) və İdarəetmə Pultları</li>
+                    <li>Uzaq Məsafəli GPS / GSM və LoRa İzləmə Cihazları</li>
+                    <li>Sensor Şəbəkələri (Temperatur, Rütubət, Maye Səviyyəsi)</li>
+                  </ul>
+                </div>
+
+                <!-- Software Column -->
+                <div class="spec-column-box sw">
+                  <div class="spec-col-header sw">
+                    <span>◈</span> NƏ TİP PROQRAMLAR (SOFTWARE) YAZIRIQ?
+                  </div>
+                  <ul class="spec-features-list">
+                    <li>Mikrokontrollerlər üçün Sürətli və Donmayan Firmware (C/C++)</li>
+                    <li>Veb və Mobil İdarəetmə Panelləri (CRM / ERP Sistemləri)</li>
+                    <li>Bütün Cihazları Mərkəzləşdirən Bulud Serverləri</li>
+                    <li>Xəritə Üzərində Canlı İzləmə və Telemetriya Vizuallaşdırması</li>
+                    <li>SMS, Zəng və Telegram ilə Təcili Xəbərdarlıq Bildirişləri</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Bottom CTA strip with updated phone number -->
+              <div class="poster-bottom-cta-strip">
+                <div class="poster-signoff">
+                  BAŞ MÜHƏNDİS: <strong>SƏBUHİ</strong> // ZƏNG: <a href="tel:+994103877511" style="color:var(--hw-orange); font-weight:800; text-decoration:none;">+994 10 387 75 11</a>
+                </div>
+                <button class="btn-poster-inquire open-inquiry-modal" data-cursor="SİFARİŞ">
+                  <span>BİZİMLƏ ƏLAQƏ SAXLAYIN</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────────────────────
+         SECTION 3: HARDWARE SOLUTIONS DIVISION (DOSSIER)
+         ───────────────────────────────────────────── -->
+    <section id="hardware" class="division-section">
+      <div class="section-header-tag">
+        <div class="sec-tag-left">
+          <span class="sec-category-label">[ 01 // CİHAZ VƏ ELEKTRONİKA ]</span>
+          <h2 class="sec-heading-h2">APARAT TƏMİNATI VƏ MÜHƏNDİSLİK</h2>
+        </div>
+        <div class="sec-desc-lead">
+          Elektron sxemlərin çəkilməsindən hazır sənaye korpusunda işlək vəziyyətə gətirilməsinə qədər bütün aparat pillələri.
+        </div>
+      </div>
+
+      <div class="division-grid interactive-zone">
+        <!-- Card 1 -->
+        <div class="lusion-card hw-card" data-cursor="PCB">
+          <div class="card-top-index">
+            <span class="index-mono">[HW-01]</span>
+            <span class="index-tag">ELEKTRON LÖVHƏ</span>
+          </div>
+          <div class="card-icon-area">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+              <rect x="9" y="9" width="6" height="6"></rect>
+              <line x1="9" y1="1" x2="9" y2="4"></line>
+              <line x1="15" y1="1" x2="15" y2="4"></line>
+              <line x1="9" y1="20" x2="9" y2="23"></line>
+              <line x1="15" y1="20" x2="15" y2="23"></line>
+              <line x1="20" y1="9" x2="23" y2="9"></line>
+              <line x1="20" y1="14" x2="23" y2="14"></line>
+              <line x1="1" y1="9" x2="4" y2="9"></line>
+              <line x1="1" y1="14" x2="4" y2="14"></line>
+            </svg>
+          </div>
+          <h3 class="card-title-h3">Xüsusi PCB Lövhələr və Mikrokontrollerlər</h3>
+          <p class="card-description-p">
+            STM32, ESP32, nRF və ARM prosessorları əsasında çoxlaylı elektron lövhələrin (PCB) sxematikasının çəkilməsi, detalların seçilməsi, lehimlənməsi və sınağı.
+          </p>
+          <div class="card-tech-chips">
+            <span class="tech-chip">KiCad / Altium</span>
+            <span class="tech-chip">Çoxlaylı PCB</span>
+            <span class="tech-chip">SMD Lehimləmə</span>
+            <span class="tech-chip">Qoruyucu Ekranlaşdırma</span>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="lusion-card hw-card" data-cursor="IOT">
+          <div class="card-top-index">
+            <span class="index-mono">[HW-02]</span>
+            <span class="index-tag">SƏNAYE IOT</span>
+          </div>
+          <div class="card-icon-area">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12.55a11 11 0 0 1 14.08 0"></path>
+              <path d="M1.42 9a16 16 0 0 1 21.16 0"></path>
+              <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+              <line x1="12" y1="20" x2="12.01" y2="20"></line>
+            </svg>
+          </div>
+          <h3 class="card-title-h3">Sənaye və Kənd Təsərrüfatı Avtomatlaşdırılması</h3>
+          <p class="card-description-p">
+            Nasosxanaların, istixanaların, fabriklərin və anbarların uzaqdan idarəsi. LoRaWAN və 4G rabitə ilə 15+ km məsafədən canlı temperatur, rütubət və təzyiq izlənməsi.
+          </p>
+          <div class="card-tech-chips">
+            <span class="tech-chip">LoRaWAN</span>
+            <span class="tech-chip">Modbus RTU / RS485</span>
+            <span class="tech-chip">Günəş Batareyası</span>
+            <span class="tech-chip">IP68 Su/Toz Qoruması</span>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="lusion-card hw-card" data-cursor="ROBOT">
+          <div class="card-top-index">
+            <span class="index-mono">[HW-03]</span>
+            <span class="index-tag">DRON VƏ MEXATRONİKA</span>
+          </div>
+          <div class="card-icon-area">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+          </div>
+          <h3 class="card-title-h3">Pilotsuz Dronlar və Xüsusi Mexanizmlər</h3>
+          <p class="card-description-p">
+            Monitorinq, çəkiliş və yük daşıma üçün xüsusi pilotsuz uçuş aparatlarının sıfırdan yığılması, motor və servoların dəqiq tənzimlənməsi, xüsusi pultların hazırlanması.
+          </p>
+          <div class="card-tech-chips">
+            <span class="tech-chip">Karbon Şassi</span>
+            <span class="tech-chip">Fırçasız Motorlar</span>
+            <span class="tech-chip">1000Hz Uçuş Kartı</span>
+            <span class="tech-chip">Pult İnteqrasiyası</span>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="lusion-card hw-card" data-cursor="KAMERA">
+          <div class="card-top-index">
+            <span class="index-mono">[HW-04]</span>
+            <span class="index-tag">AĞILLI KAMERA</span>
+          </div>
+          <div class="card-icon-area">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2a10 10 0 1 0 10 10H12V2z"></path>
+              <path d="M12 12L2.5 7.5"></path>
+              <path d="M12 12v10"></path>
+            </svg>
+          </div>
+          <h3 class="card-title-h3">Görüntü Emalı və Sənaye Kamera Qutuları</h3>
+          <p class="card-description-p">
+            Konveyer xəttində qüsurlu məhsulları avtomatik tapan, nömrələri və insanları tanıyan, buluda ehtiyac olmadan birbaşa lövhə üzərində qərar verən ağıllı aparatlar.
+          </p>
+          <div class="card-tech-chips">
+            <span class="tech-chip">Edge NPU Çipi</span>
+            <span class="tech-chip">Optik Sensorlar</span>
+            <span class="tech-chip">Daxili AI İnference</span>
+            <span class="tech-chip">Avtomatik Rele İdarəsi</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────────────────────
+         SECTION 4: SOFTWARE SOLUTIONS DIVISION (DOSSIER)
+         ───────────────────────────────────────────── -->
+    <section id="software" class="division-section">
+      <div class="section-header-tag">
+        <div class="sec-tag-left">
+          <span class="sec-category-label" style="color: var(--sw-cyan);">[ 02 // PROQRAM TƏMİNATI ]</span>
+          <h2 class="sec-heading-h2">PROQRAM TƏMİNATI VƏ İDARƏETMƏ PANELLƏRİ</h2>
+        </div>
+        <div class="sec-desc-lead">
+          Yığdığımız cihazların telefon və kompüterinizdə dərhal görünməsini təmin edən etibarlı proqram sistemləri.
+        </div>
+      </div>
+
+      <div class="division-grid interactive-zone">
+        <!-- Card 1 -->
+        <div class="lusion-card sw-card" data-cursor="FIRMWARE">
+          <div class="card-top-index">
+            <span class="index-mono">[SW-01]</span>
+            <span class="index-tag">DAXİLİ KOD</span>
+          </div>
+          <div class="card-icon-area">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+          </div>
+          <h3 class="card-title-h3">Cihazlar üçün Donmayan Firmware (C/C++)</h3>
+          <p class="card-description-p">
+            Mikrokontrollerlərin illərlə donmadan, fasiləsiz işləməsi üçün peşəkar C/C++ proqramlaşdırması. Enerjiyə qənaət rejimi və xətaların avtomatik bərpası.
+          </p>
+          <div class="card-tech-chips">
+            <span class="tech-chip">Embedded C / C++</span>
+            <span class="tech-chip">FreeRTOS</span>
+            <span class="tech-chip">Watchdog Müdafiəsi</span>
+            <span class="tech-chip">OTA (Simsiz Yenilənmə)</span>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="lusion-card sw-card" data-cursor="CRM">
+          <div class="card-top-index">
+            <span class="index-mono">[SW-02]</span>
+            <span class="index-tag">İDARƏ PANELİ</span>
+          </div>
+          <div class="card-icon-area">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+          </div>
+          <h3 class="card-title-h3">Canlı Veb və Mobil İdarəetmə Panelləri</h3>
+          <p class="card-description-p">
+            Cihazlarınızdan gələn bütün məlumatları xəritə üzərində canlı izləmək, parametrləri dəyişmək və hesabatları PDF formatında çıxarmaq üçün rahat veb panellər.
+          </p>
+          <div class="card-tech-chips">
+            <span class="tech-chip">Veb İdarə Paneli</span>
+            <span class="tech-chip">Android &amp; iOS Tətbiqlər</span>
+            <span class="tech-chip">Canlı Qrafiklər</span>
+            <span class="tech-chip">Fərdi Giriş Hüquqları</span>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="lusion-card sw-card" data-cursor="SERVER">
+          <div class="card-top-index">
+            <span class="index-mono">[SW-03]</span>
+            <span class="index-tag">BULUD VƏ BAZA</span>
+          </div>
+          <div class="card-icon-area">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
+            </svg>
+          </div>
+          <h3 class="card-title-h3">Yüksək Sürətli Bulud Serverləri</h3>
+          <p class="card-description-p">
+            Yüzlərlə və minlərlə cihazın eyni anda göndərdiyi siqnalları sıfır gecikmə ilə qəbul edən, arxivləşdirən və qoruyan etibarlı server infrastrukturu.
+          </p>
+          <div class="card-tech-chips">
+            <span class="tech-chip">Golang / Node.js</span>
+            <span class="tech-chip">PostgreSQL &amp; Redis</span>
+            <span class="tech-chip">WebSocket Canlı Əlaqə</span>
+            <span class="tech-chip">Avtomatik Ehtiyat Baza</span>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="lusion-card sw-card" data-cursor="BİLDİRİŞ">
+          <div class="card-top-index">
+            <span class="index-mono">[SW-04]</span>
+            <span class="index-tag">TƏHLÜKƏSİZLİK</span>
+          </div>
+          <div class="card-icon-area">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          </div>
+          <h3 class="card-title-h3">Məlumat Şifrələnməsi və Təcili Bildirişlər</h3>
+          <p class="card-description-p">
+            Sistemdə fövqəladə vəziyyət (məs: qaz sızması, həddindən artıq qızma, nasazlıq) yarandıqda məsul şəxslərin telefonuna saniyələr ərzində SMS, zəng və Telegram bildirişi.
+          </p>
+          <div class="card-tech-chips">
+            <span class="tech-chip">SMS &amp; Zəng API</span>
+            <span class="tech-chip">Telegram Botu</span>
+            <span class="tech-chip">AES-256 Şifrələmə</span>
+            <span class="tech-chip">Müdaxilədən Müdafiə</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────────────────────
+         SECTION 5: HARDWARE-TO-SOFTWARE BRIDGE SIMULATOR
+         ───────────────────────────────────────────── -->
+    <section class="bridge-simulator-section">
+      <div class="bridge-sim-container interactive-zone">
+        <div class="bridge-sim-header">
+          <span class="sec-category-label">[ SİSTEM SİMULYATORU // CANLI TEST ]</span>
+          <h2 class="sec-heading-h2" style="font-size: 2.4rem; margin-top: 8px;">
+            FİZİKİ SIQNALDAN BULUD İNTELLEKTİNƏ
+          </h2>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">
+            Aşağıdakı düyməyə basaraq fiziki aparat sensorundan göndərilən siqnalın proqram və bulud qatlarına necə anında çatdığını canlı izləyin.
+          </p>
+        </div>
+
+        <!-- 4 Node Track Pipeline -->
+        <div class="sim-pipeline-track">
+          <!-- Node 1: Hardware -->
+          <div id="sim-node-hw" class="sim-node-box node-hw">
+            <div class="sim-node-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+                <line x1="9" y1="9" x2="15" y2="15"></line>
+              </svg>
+            </div>
+            <div class="sim-node-title">1. SENSOR &amp; PCB</div>
+            <div class="sim-node-desc">Fiziki Siqnal Qəbulu (0-5V)</div>
+          </div>
+
+          <div class="sim-arrow-divider">
+            <div class="sim-arrow-pulse"></div>
+          </div>
+
+          <!-- Node 2: Firmware -->
+          <div id="sim-node-fw" class="sim-node-box node-fw">
+            <div class="sim-node-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+            </div>
+            <div class="sim-node-title">2. C/C++ FIRMWARE</div>
+            <div class="sim-node-desc">ADC &amp; RTOS Emalı</div>
+          </div>
+
+          <div class="sim-arrow-divider">
+            <div class="sim-arrow-pulse"></div>
+          </div>
+
+          <!-- Node 3: Edge AI -->
+          <div id="sim-node-edge" class="sim-node-box node-edge">
+            <div class="sim-node-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                <path d="M2 17l10 5 10-5"></path>
+                <path d="M2 12l10 5 10-5"></path>
+              </svg>
+            </div>
+            <div class="sim-node-title">3. KƏNAR GATEWAY</div>
+            <div class="sim-node-desc">AES-256 Şifrələmə</div>
+          </div>
+
+          <div class="sim-arrow-divider">
+            <div class="sim-arrow-pulse"></div>
+          </div>
+
+          <!-- Node 4: Cloud & 3D -->
+          <div id="sim-node-cloud" class="sim-node-box node-cloud">
+            <div class="sim-node-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
+              </svg>
+            </div>
+            <div class="sim-node-title">4. BULUD &amp; 3D SAAS</div>
+            <div class="sim-node-desc">Qlobal Sinxronizasiya</div>
+          </div>
+        </div>
+
+        <!-- Telemetry Controller Panel -->
+        <div class="sim-controls-panel">
+          <div class="sim-telemetry-readout">
+            <div class="telemetry-col">
+              <span>CANLI PAKETLƏR</span>
+              <span id="telemetry-packet-count">142,850</span>
+            </div>
+            <div class="telemetry-col">
+              <span>ORTA GECİKMƏ (PING)</span>
+              <span id="telemetry-latency-val">0.92 ms</span>
+            </div>
+            <div class="telemetry-col">
+              <span>ŞİFRƏ PROTOKOLU</span>
+              <span style="color: var(--hw-orange);">CHACHA20-POLY1305</span>
+            </div>
+          </div>
+
+          <button id="btn-transmit-pulse" class="btn-transmit-pulse" data-cursor="TRANSMIT">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+            PULSE GÖNDƏR (TEST TEST PACKET)
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────────────────────
+         SECTION 6: FEATURED CASE STUDIES SHOWCASE
+         ───────────────────────────────────────────── -->
+    <section class="projects-gallery-section">
+      <div class="section-header-tag">
+        <div class="sec-tag-left">
+          <span class="sec-category-label">[ FLIGHT-TESTED PORTFOLIO ]</span>
+          <h2 class="sec-heading-h2">MÜHƏNDİSLİK VƏ İCRAAT NÜMUNƏLƏRİ</h2>
+        </div>
+        <div class="sec-desc-lead">
+          Savelya komandasının tədqiq etdiyi və tətbiq etdiyi hibrid texnoloji flaqmanlar.
+        </div>
+      </div>
+
+      <div class="projects-dual-stack interactive-zone">
+        <!-- Project 1 -->
+        <div class="project-feature-card">
+          <div class="proj-img-wrap">
+            <img src="/images/drone_fleet.jpg" alt="Aero-Telemetry 1000">
+            <span class="proj-badge-category">HARDWARE + SOFTWARE</span>
+          </div>
+          <div class="proj-body">
+            <h3 class="proj-title">Savelya Aero-Telemetry 1000 // Flight Control</h3>
+            <p class="proj-desc">
+              1000 Hz tezlikli IMU sensor kalibrasiyalı daxili mikrokontroller aparat lövhəsi və yerdən real-vaxt 3D trayektoriyanı idarə edən bulud platforması.
+            </p>
+            <div class="proj-metrics-bar">
+              <div class="metric-pill">
+                <span class="m-val">1000 Hz</span>
+                <span class="m-lbl">Dövriyyə Tezliyi</span>
+              </div>
+              <div class="metric-pill">
+                <span class="m-val">45 km</span>
+                <span class="m-lbl">Telemetriya Məsafəsi</span>
+              </div>
+              <div class="metric-pill">
+                <span class="m-val">0.05°</span>
+                <span class="m-lbl">Bucaq Dəqiqliyi</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-feature-card">
+          <div class="proj-img-wrap">
+            <img src="/images/spatial_studio.jpg" alt="Spatial Digital Twin">
+            <span class="proj-badge-category">REALTIME 3D DIGITAL TWIN</span>
+          </div>
+          <div class="proj-body">
+            <h3 class="proj-title">OmniTrack Industrial Spatial Twin</h3>
+            <p class="proj-desc">
+              Bütün fabrikin yüzlərlə fiziki temperatur, vibrasiya və təzyiq sensorlarını brauzerdə interaktiv 3D mühitdə əks etdirən rəqəmsal əkiz platforması.
+            </p>
+            <div class="proj-metrics-bar">
+              <div class="metric-pill">
+                <span class="m-val">500+</span>
+                <span class="m-lbl">Canlı Sensorlar</span>
+              </div>
+              <div class="metric-pill">
+                <span class="m-val">60 FPS</span>
+                <span class="m-lbl">WebGPU Render</span>
+              </div>
+              <div class="metric-pill">
+                <span class="m-val">99.99%</span>
+                <span class="m-lbl">Davamlılıq</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────────────────────
+         SECTION 7: COMMISSION & CTA (Lusion Style)
+         ───────────────────────────────────────────── -->
+    <section class="commission-cta-section interactive-zone">
+      <div class="cta-super-eyebrow">[ TƏRƏFDAŞLIQ VƏ SİFARİŞ ]</div>
+      <h2 class="cta-headline-massive">
+        GƏLƏCƏYİN TEXNOLOGİYASINI<br>
+        BİRLİKDƏ İNŞA EDƏK.
+      </h2>
+      <p class="cta-subtext">
+        İstər xüsusi mikrosxem və fiziki aparat tələb olunsun, istərsə də milyonlarla istifadəçini qəbul edən mürəkkəb proqram təminatı — Savelya sizin üçün hazırdır.
+      </p>
+
+      <div class="cta-actions-cluster">
+        <button class="btn-open-inquiry open-inquiry-modal" data-cursor="SİFARİŞ">
+          <span>LAYİHƏ SİFARİŞ ET</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+
+        <a href="mailto:seabuhikhazimzade@gmail.com" class="btn-contact-alt" data-cursor="EMAIL">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          seabuhikhazimzade@gmail.com
+        </a>
+
+        <a href="tel:+994103877511" class="btn-contact-alt" data-cursor="ZƏNG">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+          +994 10 387 75 11
+        </a>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────────────────────
+         FOOTER
+         ───────────────────────────────────────────── -->
+    <footer class="lusion-footer">
+      <div class="footer-inner-grid">
+        <div class="footer-copy-text">
+          © 2026 <strong>Savelya MMC</strong>. Bütün hüquqlar qorunur. Baş Mühəndis &amp; Təsisçi: <strong>Səbuhi</strong>.
+        </div>
+        <div class="footer-meta-badges">
+          <span><span class="status-beacon"></span> HARDWARE LAB // AKTİV</span>
+          <span>EST. BAKU, AZERBAIJAN</span>
+          <span>LUSION ARCHITECTURE v5.0</span>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- ═══════════════════════════════════════════════
+       MODAL 1: FULLSCREEN REKLAM AFİŞASI BILLBOARD
+       ═══════════════════════════════════════════════ -->
+  <div id="poster-modal-overlay" class="poster-modal-overlay" role="dialog" aria-modal="true" aria-label="Afişa Rejimi">
+    <div class="poster-modal-card">
+      <button id="close-poster-modal" class="modal-close-btn" aria-label="Bağla" data-cursor="BAĞLA">✕</button>
+
+      <div class="poster-top-telemetry">
+        <div class="poster-stamp">
+          <span class="poster-code-badge">REKLAM AFİŞASI // FULLSCREEN BILLBOARD</span>
+          <span>SAVELYA ADVANCED HARDWARE &amp; SOFTWARE SOLUTIONS</span>
+        </div>
+        <div>
+          <button onclick="window.print()" class="poster-btn-action">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 6 2 18 2 18 9"></polyline>
+              <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+              <rect x="6" y="14" width="12" height="8"></rect>
+            </svg>
+            ÇAP ET / PDF
+          </button>
+        </div>
+      </div>
+
+      <div class="poster-graphic-canvas-wrap">
+        <div class="poster-left-visual">
+          <img src="/images/lusion_hardware_core.jpg" alt="Savelya AXON-C9" class="poster-hero-img">
+          <div class="poster-img-gradient-scrim"></div>
+          <div class="poster-hologram-hud">
+            <div class="hologram-top-badge">
+              <span class="status-beacon"></span> 100% YERLİ MÜHƏNDİSLİK VƏ İNNOVASİYA
+            </div>
+            <div class="hologram-bottom-specs">
+              <div class="holo-spec-title">
+                <span>AXON-C9 NEURAL SILICON</span>
+                <span style="color:var(--hw-orange)">INDUSTRIAL GRADE</span>
+              </div>
+              <div class="holo-spec-desc">
+                Avtonom qurğulardan bulud platformalarına qədər tam dövrəli aparat və proqram zənciri.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="poster-right-details">
+          <div class="poster-header-titles">
+            <span class="poster-campaign-subtitle">SAVELYA MMC // TƏQDİMAT AFİŞASI</span>
+            <h2 class="poster-title-editorial" style="font-size: 2.6rem;">
+              BİZİM MÜHƏNDİSLİK GÜCÜMÜZ
+            </h2>
+            <p class="poster-narrative">
+              Şirkətimiz həm fiziki aparat (hardware) təminatını — mikrosxemləri, sensorları, kontrollerləri, robot qollarını və IoT qovşaqlarını layihələndirir; həm də bu qurğuların üzərində çalışan dərindən inteqrasiyalı proqram (software) təminatını — firmware, bulud serverləri, kənar süni intellekt və real-vaxt 3D rəqəmsal əkizlərini yaradır.
+            </p>
+          </div>
+
+          <div class="poster-spec-matrix">
+            <div class="spec-column-box hw">
+              <div class="spec-col-header hw">⚡ HARDWARE HƏLLƏRİMİZ</div>
+              <ul class="spec-features-list">
+                <li>Xüsusi Çoxlaylı PCB İstehsalı</li>
+                <li>STM32, ESP32, ARM Cortex &amp; FPGA</li>
+                <li>Sənaye IoT (LoRaWAN, 5G, Modbus)</li>
+                <li>Robototexnika və Mexatronika</li>
+                <li>Kənar AI (Edge NPU) Modulları</li>
+              </ul>
+            </div>
+
+            <div class="spec-column-box sw">
+              <div class="spec-col-header sw">◈ SOFTWARE HƏLLƏRİMİZ</div>
+              <ul class="spec-features-list">
+                <li>Paylanmış Bulud Mikroservisləri (Go/Rust)</li>
+                <li>Real-vaxt 3D WebGL Rəqəmsal Əkizlər</li>
+                <li>Müəssisə ERP və Avtomatlaşdırma SaaS</li>
+                <li>Aparat Səviyyəsində Şifrələmə və Təhlükəsizlik</li>
+                <li>Yüksək Yüklü WebSocket API-lər</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="poster-bottom-cta-strip">
+            <div class="poster-signoff">
+              ƏLAQƏ: <strong>+994 10 387 75 11</strong> // <strong>seabuhikhazimzade@gmail.com</strong>
+            </div>
+            <button class="btn-poster-inquire open-inquiry-modal">
+              MÜRACİƏT ET
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       MODAL 2: INQUIRY / COMMISSION DIALOG
+       ═══════════════════════════════════════════════ -->
+  <div id="inquiry-modal-overlay" class="inquiry-modal-overlay" role="dialog" aria-modal="true" aria-label="Müraciət Formu">
+    <div class="inquiry-box">
+      <button id="close-inquiry-modal" class="modal-close-btn" style="top: 20px; right: 20px;">✕</button>
+      <h2 class="inquiry-h2">LAYİHƏ SİFARİŞİ</h2>
+      <p class="inquiry-lead">
+        Hardware, Software və ya hər iki sahədə həllə ehtiyacınız var? Məlumatları qeyd edin, mühəndislərimiz dərhal sizinlə əlaqə saxlasın.
+      </p>
+
+      <form id="inquiry-form" class="inquiry-form">
+        <div class="form-group">
+          <label class="form-label" for="inq-name">Adınız / Şirkətiniz</label>
+          <input type="text" id="inq-name" class="form-input" placeholder="Məsələn: Orxan Əliyev / ABC Tech" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="inq-type">Həll Sahəsi</label>
+          <select id="inq-type" class="form-select">
+            <option value="both">Həm Hardware, Həm Software (Tam Sinergiya)</option>
+            <option value="hardware">Yalnız Hardware (PCB, Mikrokontroller, Sənaye IoT)</option>
+            <option value="software">Yalnız Software (Bulud Platforması, 3D Rəqəmsal Əkiz, SaaS)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="inq-contact">Əlaqə Nömrəsi və ya Email</label>
+          <input type="text" id="inq-contact" class="form-input" placeholder="+994 10 387 75 11 və ya email@domain.com" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="inq-details">Layihənin Təsviri</label>
+          <textarea id="inq-details" class="form-textarea" rows="3" placeholder="Görmək istədiyiniz avadanlıq və ya proqram təminatı barədə qısa qeyd..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-form-submit">
+          MÜRACİƏTİ GÖNDƏR
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- SCRIPT ENTRY POINT -->
+  <script type="module" src="/src/lusion/lusion-app.js"></script>
+</body>
+</html>
